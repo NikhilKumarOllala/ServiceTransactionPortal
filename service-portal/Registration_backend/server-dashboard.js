@@ -2,8 +2,9 @@ const express= require('express');
 const mongoose= require('mongoose');
 const morgan= require('morgan');
 const path= require('path');
+let app = express();  // Compliant
+app.disable("x-powered-by");
 
-const app=express();
 const PORT=process.env.PORT || 4000;
 app.use(morgan('tiny'));
 app.get('/api',(req,res)=>{
