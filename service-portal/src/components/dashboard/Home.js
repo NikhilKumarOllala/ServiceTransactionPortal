@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import './Home.css';
 import ListItems from './Listitems';
@@ -7,7 +6,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
 library.add(faTrash);
-
 export class Home extends Component {
   constructor(props){
     super(props);
