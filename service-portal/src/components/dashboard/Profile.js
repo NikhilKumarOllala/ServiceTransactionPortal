@@ -21,8 +21,7 @@ margin-right: 6em;
 export const Profile = () => (
 
   <Hemlo>
-     <h2>USER PROFILE</h2>
-    <p>TRFDHHJDSAFGAG</p>
+    
   </Hemlo>
 
 )
