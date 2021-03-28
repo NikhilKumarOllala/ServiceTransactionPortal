@@ -25,14 +25,13 @@ margin-right: 6em;
 
 export const History = () => (
 
+
   <div>
     <NavigationBar />
       <Sidebar />
  
      <h2>USER HISTORY</h2>
-    <p>TRFDHHJD</p>
-
-    </div>
+    <p>TRFDHHJD</p></div>
 
     
  

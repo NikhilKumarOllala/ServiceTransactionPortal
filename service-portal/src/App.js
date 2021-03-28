@@ -28,10 +28,6 @@ import { ProfHistory} from './components/dashboard/ProfHistory';
 import { ProfProfile } from './components/dashboard/ProfProfile';
 import Login_customer from './components/registration/Login_customer';
 
-
-
-
-
 function App() {
   return (
     <div className="App">
