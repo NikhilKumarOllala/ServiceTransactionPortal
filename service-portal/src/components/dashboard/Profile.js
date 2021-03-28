@@ -24,14 +24,10 @@ margin-right: 6em;
 export const Profile = () => (
 
   <Hemlo>
-<<<<<<< HEAD
-    
-=======
     <NavigationBarprof />
       <Sidebar />
      <h2>USER PROFILE</h2>
     <p>TRFDHHJDSAFGAG</p>
->>>>>>> 9e06411df2ad7621a8915f0300a091bc23460a22
   </Hemlo>
 
 )

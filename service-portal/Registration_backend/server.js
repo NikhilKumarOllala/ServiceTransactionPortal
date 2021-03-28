@@ -1,5 +1,4 @@
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const routeURL = require('./Routes/route')
@@ -12,7 +11,9 @@ let corsOptions = {
 };
 
 
+let app = express();  // Compliant
 app.disable("x-powered-by");
+
 //config
 dotenv.config()
 
@@ -20,7 +21,10 @@ mongoose.connect(process.env.ACCESS_NIKHIL, () => console.log('database connecte
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors());
+app.use(cors(corsOptions));
 app.use('/professionals',professionals)
 app.use('/app',routeURL)
 app.listen(PORT,console.log(`Server open at  ${PORT}`));
+
+
+
