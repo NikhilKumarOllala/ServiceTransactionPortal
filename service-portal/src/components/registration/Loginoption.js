@@ -9,6 +9,7 @@ const Loginoption = () => {
 
     return (
         <div>
+            <div className="container-opt" >
             < h1 style={{color:'gray'}}> Login as</h1 >            
             
             <div className='button'>
@@ -22,6 +23,8 @@ const Loginoption = () => {
                         CUSTOMER
                     </button>
                 )} />
+            </div>
+            
             </div>
             
         </div>

@@ -105,9 +105,11 @@ class Registrationpageseeker extends Component {
                 experience:document.getElementById('experience').value
             }
             if (registered.fullName == ''|| registered.email == ''|| registered.phoneNo == ''|| registered.gender == ''|| registered.occupation == ''|| registered.location == ''|| registered.password == ''|| registered.experience == '') {
-            isEmpty = true;
+                 isEmpty = true;
+                 
             }
             console.log(isEmpty);
+            console.log(registered.fullName + registered.email + registered.phoneNo + registered.gender + registered.occupation + registered.location + registered.password + registered.experience );
             if (isEmpty) {
                 Swal.fire({
                     title: 'error',
@@ -118,24 +120,23 @@ class Registrationpageseeker extends Component {
                       if (result.isConfirmed) {
                           window.location.replace('/regpageseeker')
                       }})
-            }else{
-            
-            axios.post('http://localhost:4000/app/signupProfessional',registered)
-            .then(Response => {
-                if (Response.data == 'ok') {
-                    Swal.fire({
-                        title: 'success',
-                        text: "success",
-                        icon: 'success',
-                        confirmButtonText: 'ok'
-                      }).then((result) =>{
-                          if (result.isConfirmed) {
-                              window.location.replace('/loginProfessional')
-                          }
-                      }
-                      )
-                }
-            })
+            }else{            
+                axios.post('http://localhost:4000/app/signupProfessional',registered)
+                .then(Response => {
+                    if (Response.status == 200) {
+                        Swal.fire({
+                            title: 'success',
+                            text: "success",
+                            icon: 'success',
+                            confirmButtonText: 'ok'
+                        }).then((result) =>{
+                            if (result.isConfirmed) {
+                                window.location.replace('/loginProfessional')
+                            }
+                        }
+                        )
+                    }
+                })
         }
 
             this.setState({

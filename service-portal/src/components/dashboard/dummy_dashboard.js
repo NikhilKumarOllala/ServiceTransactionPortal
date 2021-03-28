@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router';
 
-import './stylesheets/dashboard.css'
 
 
-export default class dashboard extends Component {
+class dashboard extends Component {
 
     openNav() {
         document.getElementById("mySidebar").style.width = "250px";
@@ -54,4 +54,4 @@ export default class dashboard extends Component {
         )
     }
 }
-
+export default withRouter(dashboard)
