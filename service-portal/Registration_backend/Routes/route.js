@@ -36,17 +36,18 @@ router.get('/signupProfessional',async (req,res) => {
                     if (response) {
                         console.log('login successfull');
                         var id = user._id
-                        var name = user.fullName                           
+                        var type = "professional"                     
                         var a={
                             id : id,
-                            name : name
+                            type : "professional"
                         }        
-                        var token = jwt.sign({id:id,name:name},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"professional"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
                         res.send(token);                       
                         
                     }else{
-                        res.send('-1')
+                        
                         console.log("wrong password!!");
+                        res.send('-1')
                         
                         
                     }
@@ -74,6 +75,7 @@ router.get('/signupCustomer',async (req,res) => {
         }else{
             if (!user) {
                 console.log("user dosent exist!!");
+                res.send('-2')
             }else(bcrypt.compare(loginpassword,user.password,(error,response) => {
                 if (error) {
                     console.log(error);
@@ -82,15 +84,16 @@ router.get('/signupCustomer',async (req,res) => {
                     if (response) {
                         console.log('login successfull');
                         var id = user._id
-                        var name = user.fullName                           
+                        var type = "customer"                      
                         var a={
                             id : id,
-                            name : name
+                            type : "customer"
                         }        
-                        var token = jwt.sign({id:id,name:name},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"customer"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
                         res.send(token); 
                     }else{
                         console.log('wrong password!!');
+                        res.send('-1')
                     }
                 
             }})) 
@@ -121,12 +124,12 @@ router.post('/signupProfessional',async (request,response) => {
     })
     signedupUser.save()
     .then(data => {
-        response.json(data)
-        response.send('ok')
+        return response.status(200).json(data)
+       // response.send('ok')
     })
     .catch(error => {
-        response.send('not-ok')
-        response.json(error)
+        
+        return response.status(404).json(error)
         
     })
 })
@@ -146,12 +149,12 @@ router.post('/signupCustomer',async (request,response) => {
     })
     signedupUser.save()
     .then(data => {
-        response.json(data)
-        response.send('ok')
+        return response.status(200).json(data)
+        //return response.send('ok')
     })
     .catch(error => {
-        response.json(error)
-        response.send('not-ok')
+        return response.status(404).json(error)
+        
     })
 })
 

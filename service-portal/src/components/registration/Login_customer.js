@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import {Link,Route} from 'react-router-dom'
+import {Link,Redirect,Route} from 'react-router-dom'
 import '../stylesheets/Login.css'
+
 const Swal = require('sweetalert2')
 
 
@@ -18,8 +19,7 @@ class Login extends Component {
                 loginPassword:document.getElementById('password').value
             }
         },{withCredentials: true})
-        .then(Response => {
-            console.log(Response.data);
+        .then(Response => {            
             /* var id = Response.data.id
             var name = Response.data.name
             document.cookie="id=" + id + ";" + "max-age=" + (24*60*60) ;
@@ -50,7 +50,7 @@ class Login extends Component {
                     confirmButtonText: 'ok'
                   }).then((result) =>{
                       if (result.isConfirmed) {
-                          window.location.replace('/profHome')
+                        window.location.replace("/Home")                          
                       }
                   }
                   )
@@ -88,7 +88,7 @@ class Login extends Component {
             </p>
             <Route render = {({history}) => (
                 
-                    <button className='signin' onClick={() => {history.push("/Home")}} >sign-in</button>                       
+                    <button className='signin' onClick={this.sign} >sign-in</button>                       
                     
                 )} />
                 
