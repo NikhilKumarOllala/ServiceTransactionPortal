@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/NikhilKumarOllala/ServiceTransactionPortal#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "mdbreact": "^5.0.1",
     "sweetalert2": "^10.15.7"
   },
