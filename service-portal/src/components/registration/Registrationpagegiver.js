@@ -88,6 +88,7 @@ class Registrationpagegiver extends Component {
             if (registered.fullName == ''|| registered.email == ''|| registered.phoneNo == ''|| registered.gender == ''|| registered.password == '') {
                     isEmpty = true;
                 }
+                console.log(isEmpty);
             if (isEmpty) {
                 Swal.fire({
                     title: 'error',
@@ -96,28 +97,28 @@ class Registrationpagegiver extends Component {
                     confirmButtonText: 'retry'
                   }).then((result) =>{
                       if (result.isConfirmed) {
-                          window.location.replace('/regpageseeker')
+                          window.location.replace('/regpagegiver')
                       }
                   }
                   )
-            } else {               
+            } else {             
                 
-            axios.post('http://localhost:4000/app/signupCustomer',registered)
-            .then(Response => {
-                if (Response.data == 'ok') {
-                    Swal.fire({
-                        title: 'success',
-                        text: "success",
-                        icon: 'success',
-                        confirmButtonText: 'ok'
-                      }).then((result) =>{
-                          if (result.isConfirmed) {
-                              window.location.replace('/loginProfessional')
-                          }
-                      }
-                      )
-                }
-            })
+                axios.post('http://localhost:4000/app/signupCustomer',registered)
+                .then(Response => {
+                    if (Response.status == 200) {
+                        Swal.fire({
+                            title: 'success',
+                            text: "success",
+                            icon: 'success',
+                            confirmButtonText: 'ok'
+                        }).then((result) =>{
+                            if (result.isConfirmed) {
+                                window.location.replace('/loginCustomer')
+                            }
+                        }
+                        )
+                    }
+                })
         }
 
             this.setState({

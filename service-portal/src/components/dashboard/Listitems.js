@@ -1,5 +1,5 @@
 import React from 'react'
-import '/ServiceTransactionPortal/service-portal/src/components/stylesheets/Listitem.css';
+import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ListItems(props){

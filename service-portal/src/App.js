@@ -7,11 +7,14 @@ import RegPagegiver from './components/registration/Registrationpagegiver.js'
 import Loginpageopt from './components/registration/Loginoption'
 import Error from './components/Error'
 import Login from './components/registration/Login.js'
+import dashboard from './components/dashboard/dummy_dashboard.js'
+import {ProtectedRouteCustomer,ProtectedRouteProfessional} from './ProtectedRoute/ProtectedRoute'
+
 
 //dashboard
 //import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { NavigationBar } from './components/dashboard/NavigationBar';
-import { Home } from './components/dashboard/Home';
+import  Home  from './components/dashboard/Home.js';
 import { History } from './components/dashboard/History';
 import { Profile } from './components/dashboard/Profile';
 import Sidebar from './components/dashboard/Sidebar';
@@ -28,6 +31,7 @@ import Login_customer from './components/registration/Login_customer';
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -38,90 +42,50 @@ function App() {
                   <Route exact path='/loginProfessional' component={Login}/>
                   <Route exact path='/loginCustomer' component={Login_customer}/>
                   <Route exact path='/regpageseeker' component={RegPageseeker} /> 
-                  <Route exact path='/regpagegiver' component={RegPagegiver} /> 
+                  <Route exact path='/regpagegiver' component={RegPagegiver} />      
+
+
                   
-                  {/*dashboard paths*/}
-                  <Route exact path='/Home' render={(props) =>
-                      <div>
-                        
-                        <Sidebar/>
-                        <Home></Home>
-                      </div>
-                    }
-                  />
-                  <Route exact path='/history' render={(props) => 
-                      <div>
-                        <NavigationBar/>
-                        <Sidebar/>
-                        <History></History>
-                      </div>
-                    }
-                  />
-                  <Route exact path='/profile' render={(props) => 
-                      <div>
-                        <NavigationBar/>
-                        <Sidebar/>
-                        <Profile></Profile>
-                      </div>
-                    }
-                  />
-                  <Route exact path='/about' render={(props) => 
-                      <div>
-                        <NavigationBar/>
-                        <Sidebar/>
-                        <About></About>
-                      </div>
-                    }
-                  />
-                  <Route exact path='/search' render={(props) => 
-                      <div>
-                        <NavigationBar/>
-                        <Sidebar/>
-                        <Search></Search>
-                      </div>
-                    }
-                  />
-                  <Route exact path='/ProfHistory' render={(props) => 
-                      <div>
-                        <NavigationBarprof/>
-                        <Sidebarprof/>
-                        <ProfHistory></ProfHistory>
-                       
-                        
-                        
-                        
-                      </div>
-                    }
-                  />
-                  <Route exact path='/ProfHome' render={(props) => 
-                      <div>
-                        <NavigationBarprof/>
-                        <Sidebarprof/>
-                        <ProfHome/>
-                        
-                        
-                      </div>
-                    }
-                  />
-                  <Route exact path='/ProfProfile' render={(props) => 
-                      <div>
-                        <NavigationBarprof/>
-                        <Sidebarprof/>
-                        <ProfProfile/>
-                        
-                       
-                      </div>
-                    }
-                  />
-                  <Route exact path='/ProfAbout' render={(props) => 
-                      <div>
-                        <NavigationBarprof/>
-                        <Sidebarprof/>
-                        
-                        <ProfAbout/>
-                      </div>
-                    }
-                  />
+                  
+                  
+                  
+                 {/*  {/*dashboard paths*/}
+                  <ProtectedRouteCustomer exact path='/Home' component={Home}  >
+                   
+                  </ProtectedRouteCustomer>
+                 
+                  <ProtectedRouteCustomer exact path='/history' component={History}>
+                    
+                  </ProtectedRouteCustomer>
+                  
+                  <ProtectedRouteCustomer exact path='/profile' component={Profile}>
+                  
+                  </ProtectedRouteCustomer>                  
+                  
+                  <ProtectedRouteCustomer exact path='/about' component={About}>
+                  
+                  </ProtectedRouteCustomer>
+                   
+                  <ProtectedRouteCustomer exact path='/Search' component={Search}>
+                  
+                  </ProtectedRouteCustomer>
+                  
+                  <ProtectedRouteProfessional exact path='/ProfHistory'component={ProfHistory}>
+                  
+                  </ProtectedRouteProfessional>
+                  
+                  <ProtectedRouteProfessional exact path='/ProfHome'  component={ProfHome}>
+                  
+                  </ProtectedRouteProfessional>
+                  
+                  <ProtectedRouteProfessional exact path='/ProfProfile' component={ProfProfile}>
+                  
+                  </ProtectedRouteProfessional>
+                  
+                  <ProtectedRouteProfessional exact path='/ProfAbout' component={ProfAbout}>
+                  
+                  </ProtectedRouteProfessional>
+                   
             <Route component={Error} />
               </Switch>}            
               
