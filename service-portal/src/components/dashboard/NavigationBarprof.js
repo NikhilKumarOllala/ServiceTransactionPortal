@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Styles = styled.div`
   .navbar { background-color: #222; position : fixed; top:0; right:0; left:0; }

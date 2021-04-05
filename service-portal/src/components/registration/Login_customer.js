@@ -1,24 +1,65 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import {Link,Route} from 'react-router-dom'
-import '/ServiceTransactionPortal/service-portal/src/components/stylesheets/Login.css'
+import '../stylesheets/Login.css'
+const Swal = require('sweetalert2')
 
 
 
 class Login extends Component {
 
 
-    sign(){
-        
+    sign(){      
          
         
         axios.get('http://localhost:4000/app/signupCustomer',{
-            params: {
+            params :{
                 loginEmail:document.getElementById('email').value,
                 loginPassword:document.getElementById('password').value
             }
+        },{withCredentials: true})
+        .then(Response => {
+            console.log(Response.data);
+            /* var id = Response.data.id
+            var name = Response.data.name
+            document.cookie="id=" + id + ";" + "max-age=" + (24*60*60) ;
+            document.cookie="name=" + name + ";" + "max-age=" + (24*60*60);  */
+            document.cookie="jwt=" + Response.data + ";" + "max-age=" + (24*60*60*1000); 
+            if (Response.data == '-1') {
+                Swal.fire({
+                    title: 'wrongPass!',
+                    text: 'Wrong password',
+                    icon: 'error',
+                    confirmButtonText: 'retry'
+                  })
+                
+            }else if (Response.data == '-2') {
+                Swal.fire({
+                    title: 'Error!',
+                    text: "User dosen't exist",
+                    icon: 'error',
+                    confirmButtonText: 'retry'
+                  })
+            }
+            else if(Response.data!= null){
+                
+                Swal.fire({
+                    title: 'success',
+                    text: "success",
+                    icon: 'success',
+                    confirmButtonText: 'ok'
+                  }).then((result) =>{
+                      if (result.isConfirmed) {
+                          window.location.replace('/profHome')
+                      }
+                  }
+                  )
+                
+            }
+            
+            
+            
         })
-        .then(Response => console.log(Response.data))
         
         
     

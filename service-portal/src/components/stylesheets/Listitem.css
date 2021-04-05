@@ -1,37 +1,22 @@
-.list {
+.list{
     color: azure;
-    width: 800px;
-    background-color: #36a0b3 ;
-    height: 100px;
+    width: 300px;
+    background-color: #bf07ac ;
+    height: 50px;
     margin : 20px auto;
     border-radius: 5px;
-    display: block;
-   overflow-wrap: break-word;
-   text-align: left;
-
-    
-    
 
 }
+
 .list p{
-    padding: 0 5px;
-    
+    padding:10px;
+    position:relative;
 }
 
-
-
-
-.list div span.delete{
-   
-    align-items: right;
+.list p span{
+    position:absolute;
+    right:10px;
     cursor: pointer;
-}
-.list div span.done button{
-    align-items: right;
-    
-    right:50px;
-    cursor: pointer;
-    
 }
 
 .faicons{

@@ -9,27 +9,14 @@ function ListItems(props){
         return <div className="list" key ={item.key}>
              <p>
                  {item.text}
-                 </p>
-             <div>
-
-                 <span className="delete">
+                
+                 <span>
                  <FontAwesomeIcon className="Faicons"
                   icon='trash'
                   onClick={()=> props.deleteItem(item.key)}
                   />
-
-
              </span>
-
-             <span className="done">
-                 <button onClick={()=> props.deleteItem(item.key)}>Done</button>
-             
-             </span>
-             
-             
-                 
-             
-             </div>
+             </p>
              
 
 

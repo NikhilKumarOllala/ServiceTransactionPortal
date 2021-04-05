@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route} from 'react-router-dom'
-import '/ServiceTransactionPortal/service-portal/src/components/stylesheets/Loginoption.css';
+import '../stylesheets/Loginoption.css';
 
 
 
