@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/NikhilKumarOllala/ServiceTransactionPortal#readme",
   "dependencies": {
-    "mdbreact": "^5.0.1"
+    "mdbreact": "^5.0.1",
+    "sweetalert2": "^10.15.7"
   },
   "devDependencies": {}
 }

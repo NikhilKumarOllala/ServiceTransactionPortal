@@ -1,0 +1,53 @@
+.list {
+    color: azure;
+    width: 800px;
+    background-color: #36a0b3 ;
+    height: 100px;
+    margin : 20px auto;
+    border-radius: 5px;
+    display: block;
+   overflow-wrap: break-word;
+   text-align: left;
+
+    
+    
+
+}
+.list p{
+    padding: 0 5px;
+    
+}
+
+
+
+
+.list div span.delete{
+   
+    align-items: right;
+    cursor: pointer;
+}
+.list div span.done button{
+    align-items: right;
+    
+    right:50px;
+    cursor: pointer;
+    
+}
+
+.faicons{
+    margin:0 5px;
+    font-size: 15px;
+}
+
+/* .list p input{
+    background-color: transparent;
+    border:0;
+    color:#fff;
+    font-size: 18px;
+
+
+}
+.list p input:focus
+{
+    outline:none;
+} */
