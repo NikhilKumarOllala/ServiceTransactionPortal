@@ -9,7 +9,10 @@ const { response } = require('express')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
-
+/*router.get('/cookie' , (req,res) => {
+    res.setHeader('Set-Cookie','newUser=true')
+    res.send('got the cookies')
+})*/
 router.get('/signupProfessional',async (req,res) => {
     
     let loginemail = req.query.loginEmail.toString()

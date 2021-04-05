@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import {Link,Route} from 'react-router-dom'
 import '../stylesheets/Login.css'
 const Swal = require('sweetalert2')
-
+const cookieParser = require('cookie-parser')
 
 
 
