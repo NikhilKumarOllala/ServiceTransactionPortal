@@ -3,9 +3,10 @@ const express = require('express')
 const router = express.Router()
 const signupTemplatecopy = require('../models/Signup_model')
 const signupTemplatecopy2 = require('../models/Signup_model_customer')
-const cookieParser = require('cookie-parser')
+const feedbackTemplatecopy = require('../models/feedback_model');
+
 const bcrypt = require('bcrypt')
-const { response } = require('express')
+
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
@@ -23,7 +24,7 @@ router.get('/signupProfessional',async (req,res) => {
     }
     ).exec((err,user) =>{
         if (err) {
-            console.log('error getting users');
+            console.log('error getting users');            
         }else{
             if (!user) {
                 console.log("user dosent exist!!");
@@ -89,7 +90,7 @@ router.get('/signupCustomer',async (req,res) => {
                             id : id,
                             type : "customer"
                         }        
-                        var token = jwt.sign({id:id,type:"customer"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"customer"},process.env.JWT,{expiresIn:24*60*60})             
                         res.send(token); 
                     }else{
                         console.log('wrong password!!');
@@ -158,6 +159,23 @@ router.post('/signupCustomer',async (request,response) => {
     })
 })
 
+router.post('/feedback',(req,res) => {
+    const id = req.body.id;
+    const rating = req.body.rating;
+    const review = req.body.review;
+    const feedback = new feedbackTemplatecopy({
+        rating:rating,
+        review:review,
+        id:id
+    })
+    feedback.save()
+    .then(data => {
+        return res.status(200).json(data);
+    })
+    .catch(error => {
+        return res.status(404).json(error);
+    })
+})
 
 
 module.exports = router;
