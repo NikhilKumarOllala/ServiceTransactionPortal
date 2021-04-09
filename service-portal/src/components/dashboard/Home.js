@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
-import Postbar from '../feedback/Postbar';
+
 
 library.add(faTrash);
 
@@ -93,7 +93,7 @@ export class Home extends Component {
      deleteItem={this.deleteItem}
      ></ListItems>
 
-    <Postbar />   
+     
      
 
 

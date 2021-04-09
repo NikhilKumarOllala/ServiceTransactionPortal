@@ -5,20 +5,18 @@ const signupTemplatecopy = require('../models/Signup_model')
 const signupTemplatecopy2 = require('../models/Signup_model_customer')
 const feedbackTemplatecopy = require('../models/feedback_model');
 
+
 const bcrypt = require('bcrypt')
 
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
-
-/*router.get('/cookie' , (req,res) => {
-    res.setHeader('Set-Cookie','newUser=true')
-    res.send('got the cookies')
-})*/
 router.get('/signupProfessional',async (req,res) => {
     
     let loginemail = req.query.loginEmail.toString()
     let  loginpassword=req.query.loginPassword.toString()
+    
+
     signupTemplatecopy.findOne({
         'email': loginemail
     }
@@ -160,20 +158,42 @@ router.post('/signupCustomer',async (request,response) => {
 })
 
 router.post('/feedback',(req,res) => {
-    const id = req.body.id;
+    const customer_id = req.body.customer_id;
+    const profession_id = req.body.profession_id;
     const rating = req.body.rating;
     const review = req.body.review;
     const feedback = new feedbackTemplatecopy({
         rating:rating,
         review:review,
-        id:id
+        customer_id:customer_id,
+        profession_id:profession_id
     })
     feedback.save()
     .then(data => {
+        console.log("feedback uploaded");
         return res.status(200).json(data);
+
     })
     .catch(error => {
+        console.log("error in feedback uploading" + error);
         return res.status(404).json(error);
+    })
+})
+
+router.post('/givenFeedback',(req,res) => {
+    const customer_id = req.body.customer_id
+    const profession_id = req.body.profession_id
+    signupTemplatecopy.findOne({
+        'customer_id' : customer_id,
+        'profession_id' : profession_id
+    }).exec((err,result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            if (result) {
+                return res.status(200).json(result);
+            }
+        }
     })
 })
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Postbar from '../feedback/Postbar';
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -31,6 +32,7 @@ export const History = () => (
  
      <h2>USER HISTORY</h2>
     <p>TRFDHHJD</p>
+    <Postbar />
 
     </div>
 

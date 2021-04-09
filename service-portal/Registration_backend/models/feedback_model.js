@@ -1,6 +1,6 @@
  
 const mongoose = require('mongoose')
-
+const conn = require('../config/database')
 const loginTemplate = new mongoose.Schema({
     rating:{
         type:String,
@@ -10,10 +10,14 @@ const loginTemplate = new mongoose.Schema({
         type:String,
         required:true
     },
-    id:{
+    customer_id:{
+        type:String,
+        required:true
+    },
+    profession_id:{
         type:String,
         required:true
     }
 })
 
-module.exports = mongoose.model('customer_feedback',loginTemplate)
+module.exports = conn.feedback.model('customer_feedback',loginTemplate)
