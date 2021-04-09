@@ -10,6 +10,7 @@ var token = document.cookie.split('=')[1];
 
 
 export function ProtectedRouteCustomer({ component:Component ,...rest}) {
+    console.log("env is " + process.env.JWT);
     var auth = false;
     if (token) {
         jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {
