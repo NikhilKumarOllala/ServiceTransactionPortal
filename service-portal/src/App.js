@@ -66,7 +66,7 @@ function App() {
                   
                   </ProtectedRouteCustomer>
                    
-                  <ProtectedRouteCustomer exact path='/search' component={Search}>
+                  <ProtectedRouteCustomer exact path='/Search' component={Search}>
                   
                   </ProtectedRouteCustomer>
                   
