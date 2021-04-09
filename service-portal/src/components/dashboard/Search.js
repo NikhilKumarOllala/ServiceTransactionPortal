@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from './NavigationBar';
+import OccupationSearch from './OccupationSearch';
 import Sidebar from './Sidebar';
-import NavigationBar  from './NavigationBar';
 
 const GridWrapper = styled.div`
   display: grid;
@@ -18,23 +18,18 @@ const Hemlo =styled.div`
 margin-top: 1em;
 margin-left: 6em;
 margin-right: 6em;
-
 `;
 
 
  function Search (){
-  const names=['Bruce','Diana','Clark']
+  // const names=['Bruce','Diana','Clark']
   return(
-    <Hemlo>
-      <NavigationBar />
-      <Sidebar />
-      <h2>SEARCH PROFESSIONALS</h2>
-      <div>
-      {
-      names.map(name=> <h2>{name}</h2> )
-      }
-    </div>
-    </Hemlo>
+    <div>  
+    <NavigationBar/>
+    <OccupationSearch/>
+    <Sidebar/>
+      </div>
+  
     
   )
 
