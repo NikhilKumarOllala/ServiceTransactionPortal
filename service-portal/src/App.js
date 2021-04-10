@@ -28,6 +28,9 @@ import { ProfHistory} from './components/dashboard/ProfHistory';
 import { ProfProfile } from './components/dashboard/ProfProfile';
 import Login_customer from './components/registration/Login_customer';
 
+//feedback
+import Feedback from './components/feedback/Feedback'
+
 
 
 
@@ -67,6 +70,10 @@ function App() {
                   </ProtectedRouteCustomer>
                    
                   <ProtectedRouteCustomer exact path='/Search' component={Search}>
+                  
+                  </ProtectedRouteCustomer>
+
+                  <ProtectedRouteCustomer exact path='/feedback' component={Feedback}>
                   
                   </ProtectedRouteCustomer>
                   

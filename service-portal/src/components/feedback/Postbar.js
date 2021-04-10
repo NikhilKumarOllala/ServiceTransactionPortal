@@ -2,6 +2,7 @@ import React, { Component ,useState} from 'react'
 import Swal from 'sweetalert2';
 import './postbar.css'
 import axios from 'axios'
+import StarRating from './StarRating'
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv').config()
 var customer_id,rating,review;
@@ -39,10 +40,6 @@ function feedback(rating,review){
 
 }
 
-
-
-
-
 export class Postbar extends Component {
   constructor(props) {
     super(props);
@@ -51,13 +48,7 @@ export class Postbar extends Component {
     };
     
   }
-
-    
-  change(){
-    this.setState({
-      cr : 2
-    })
-  }
+  
     submit(Event){
         Event.preventDefault();    
         
@@ -69,9 +60,12 @@ export class Postbar extends Component {
           }).queue([
             {
               title: 'Level of statisfaction',  
-              input: 'range'  ,
+              html: '<div>starrating : <StarRating /></div>',
               
-              inputValue : '50'              
+              //input : 'radio',   
+              
+              
+             // inputValue : '50'              
             },
             {
                 title:'Review',
@@ -116,18 +110,19 @@ export class Postbar extends Component {
         console.log("given is " + JSON.stringify(Response.data,null,2));
       })
     }
-    
-    componentDidMount(){
-      this.displayFeedback()
+    feeDBack(){
+      window.location.replace('/feedback')
     }
+    
     
     render() {
         return (
             <div className = "postbar">
                 <h1>hello</h1>
-                <h2>professor_id</h2>
+                <h2>professor_id</h2>                
+                <div>starrating : <StarRating /></div>
                 <div> rating {givenRating}  review  {givenReview} : <input type="text" id ="message" readOnly></input></div>
-                <button className="feedbackbtn"onClick={this.submit}>feedback</button>
+                <button className="feedbackbtn" onClick = {this.feeDBack}>feedback</button>
                 <button onClick = {this.displayFeedback}>click Me {"hi" + this.state.cust_rating}</button>
                 
                 
