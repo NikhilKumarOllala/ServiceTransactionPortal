@@ -120,7 +120,7 @@ export class Postbar extends Component {
             <div className = "postbar">
                 <h1>hello</h1>
                 <h2>professor_id</h2>                
-                <div>starrating : <StarRating /></div>
+                
                 <div> rating {givenRating}  review  {givenReview} : <input type="text" id ="message" readOnly></input></div>
                 <button className="feedbackbtn" onClick = {this.feeDBack}>feedback</button>
                 <button onClick = {this.displayFeedback}>click Me {"hi" + this.state.cust_rating}</button>
