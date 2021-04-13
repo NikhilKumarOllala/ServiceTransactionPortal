@@ -40,7 +40,7 @@ router.get('/signupProfessional',async (req,res) => {
                             id : id,
                             type : "professional"
                         }        
-                        var token = jwt.sign({id:id,type:"professional"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"professional",role:user.occupation},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
                         res.send(token);                       
                         
                     }else{
