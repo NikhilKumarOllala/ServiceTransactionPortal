@@ -51,7 +51,7 @@ function OccupationSearch() {
 }
 
 const CountryDetail = (props) => {
-  const { occupation, fullName, phoneNo } = props;
+  const { occupation, fullName, phoneNo , location } = props;
 
   return (
     <>
@@ -61,6 +61,9 @@ const CountryDetail = (props) => {
               <Card.Body>
                 <Card.Title style={{color: 'black' }}>{fullName}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{occupation}</Card.Subtitle>
+                <Card.Text style={{color: 'black'}}>
+                <small>{location} </small>
+                </Card.Text>
                 <Card.Text style={{color: 'black'}}>
                 <small>{phoneNo} </small>
                 </Card.Text>

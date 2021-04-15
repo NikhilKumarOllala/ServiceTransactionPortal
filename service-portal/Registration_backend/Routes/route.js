@@ -58,10 +58,35 @@ router.get('/signupProfessional',async (req,res) => {
             
         }
     })
-
-    
+  
     
 })
+
+router.get('/myprofile',async(req,res) => {
+    const token = req.headers['x-access-token']
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+    cusotmers.findById(decoded.id, (error, customer) => {
+      if (error) return res.send(err);
+      return res.status(200).send(customer);
+    });
+  });
+})
+
+router.get('/myprofile_professional',async(req,res) => {
+    const token = req.headers['x-access-token']
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+    professionals.findById(decoded.id, (error, professional) => {
+      if (error) return res.send(err);
+      return res.status(200).send(professional);
+    });
+  });
+})
+
+
 router.get('/signupCustomer',async (req,res) => {
     console.log(req.query.loginEmail);
     let loginemail = req.query.loginEmail.toString()
