@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Sidebarprof from './Sidebarprof';
 import NavigationBarprof from './NavigationBarprof';
-import view_feed_prof from '../feedback/view_feed_prof'
+import View_feed_prof from '../feedback/view_feed_prof'
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -28,11 +28,10 @@ export const ProfHistory = () => (
 
   <div>
  <Hemlo>
- <NavigationBarprof />
-      <Sidebarprof />
+ 
  <h2>USER HISTORY professional</h2>
     <p>TRFDHHJD</p>
-    <view_feed_prof />
+    <View_feed_prof />
      
  </Hemlo>
     

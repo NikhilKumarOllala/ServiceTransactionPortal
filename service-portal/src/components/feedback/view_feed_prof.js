@@ -30,7 +30,7 @@ class view_feed_prof extends Component{
         super(props)
         this.state={
 
-            p_id:pID,
+            p_id:"professional_id",//hardcoded here.
             feedbacks:[]
         }
     }
@@ -38,8 +38,7 @@ class view_feed_prof extends Component{
         return(
             <div className="entire_div_profile">
                 {/* <Dashboard/> */}
-                <NavigationBarprof />
-                <Sidebarprof />
+                
                 
                 <div className="side_main_box">
                     <h3>Feedbacks received:</h3>
@@ -53,7 +52,7 @@ class view_feed_prof extends Component{
     }
     get_feedbacks(p_id){
         getUserID();
-        const prof={p_id:pID};
+        const prof={p_id:p_id};
         console.log("id is "+p_id);
         
         axios.post('http://localhost:4000/app/get_feedback_prof',{prof})
@@ -66,8 +65,8 @@ class view_feed_prof extends Component{
     }
     show_cards(){
         var j=this.state.feedbacks;
-        console.log("j is "+j);
-        if(j===""){
+        console.log("j is "+j.length);
+        if(!(j.length)){            
             return(<div style={{marginLeft:"40%"}}>No Feedbacks yet :(</div>)
         }
         return j.map((fdb_json,index)=>{
@@ -84,7 +83,7 @@ class view_feed_prof extends Component{
         l.push(<BsStar></BsStar>)
     }
     return(
-        <Card style={{marginTop:"2%",border:"1px solid",boxShadow:"0px 14px 20px rgba(34, 35, 58, 0.2)",marginLeft:"10%",marginRight:"10%"}}>
+        <Card style={{marginTop:"2%",border:"1px solid",boxShadow:"0px 14px 20px rgba(34, 35, 58, 0.2)",marginLeft:"10%",marginRight:"10%" ,color:'black'}}>
             <Card.Body>
                 <Card.Title>
                     {l}

@@ -181,7 +181,7 @@ router.post('/feedback',(req,res) => {
 })
 router.post('/get_feedback_prof',(req,res)=>{
     const pID = req.body.prof.p_id;
-    console.log("p_id is "+req.body.prof.p_id);
+    //console.log("p_id is "+req.body.prof.p_id);
     feedbackTemplatecopy.find(
         {
             'professional_id':pID
@@ -196,7 +196,8 @@ router.post('/get_feedback_prof',(req,res)=>{
                 return res.status(201);
             }else
             {
-                console.log("feedbacks recived");
+                //console.log("feedbacks recived");
+                //console.log("feedbacks are" + feedback + "...");
                 return res.status(200).send(feedback);
             }
         }
