@@ -10,3 +10,29 @@
     align-content: flex-end;
 }
 
+.auth-wrapper1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 50px;
+    
+}
+  
+.auth-inner1 {
+    width: auto;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all .3s;
+    
+}
+
+.t{
+    font-size: 30px;
+    color: black;
+}
+.container1{
+    text-align: center;
+}

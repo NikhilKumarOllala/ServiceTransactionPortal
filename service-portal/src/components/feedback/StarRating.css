@@ -7,8 +7,11 @@ input[type = "radio"]{
 }
 
 .review{
-    width: 700px;
-    height: 200px;
+    width: 600px;
+    height: 150px;
     box-shadow: 10px;
     border-radius: 10px;
+    font-size: 2em;
+    font-style: italic;
+
 }

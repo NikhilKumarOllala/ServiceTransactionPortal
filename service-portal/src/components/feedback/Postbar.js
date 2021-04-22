@@ -5,7 +5,7 @@ import axios from 'axios'
 import StarRating from './StarRating'
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv').config()
-var customer_id,rating,review;
+var customer_id,rating,review,pID="professional_id" //hardcoded here;
 var givenRating ="",givenReview = "";
 
 
@@ -111,6 +111,7 @@ export class Postbar extends Component {
       })
     }
     feeDBack(){
+      sessionStorage.setItem('pID',pID);
       window.location.replace('/feedback')
     }
     
@@ -118,12 +119,11 @@ export class Postbar extends Component {
     render() {
         return (
             <div className = "postbar">
-                <h1>hello</h1>
-                <h2>professor_id</h2>                
+                <h1>Details about post </h1>
+                <h2>professor_id</h2>                               
                 
-                <div> rating {givenRating}  review  {givenReview} : <input type="text" id ="message" readOnly></input></div>
                 <button className="feedbackbtn" onClick = {this.feeDBack}>feedback</button>
-                <button onClick = {this.displayFeedback}>click Me {"hi" + this.state.cust_rating}</button>
+                
                 
                 
             </div>

@@ -4,10 +4,11 @@ import StarRating from './StarRating'
 export class Feedback extends Component {
     render() {
         return (
-            <div className="container">
-                <h1>Feedback</h1>
+            <div>
+                <h1 style={{textAlign:'center'}}>Feedback</h1>
                 <StarRating ></StarRating>
             </div>
+            
         )
     }
 }
