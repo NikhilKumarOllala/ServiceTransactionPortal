@@ -5,17 +5,18 @@ import Card from "react-bootstrap/Card";
 import "./OS.css";
 
 function OccupationSearch() {
-  const [countries, setCountries] = useState([]);
+  const [professionals, setprofessionals] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [searchByCity, setSearchByCity] = useState("");
+  const [searchByLocation, setsearchByLocation] = useState("");
+  const [filteredprofessionals, setFilteredprofessionals] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get("http://localhost:4000/professionals/all")
       .then((res) => {
-        setCountries(res.data);
+        setprofessionals(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -24,12 +25,14 @@ function OccupationSearch() {
   }, []);
 
   useEffect(() => {
-    setFilteredCountries(
-      countries.filter((country) =>
-        country.occupation.includes(search.toLowerCase())
+    setFilteredprofessionals(
+      professionals.filter((element) =>
+        element.occupation.toLowerCase().includes(searchByCity.toLowerCase())
+      ).filter((element) =>
+        element.location.toLowerCase().includes(searchByLocation.toLowerCase())
       )
     );
-  }, [search, countries]);
+  }, [searchByCity,searchByLocation, professionals]);
 
   if (loading) {
     return <p>Loading Occupations...</p>;
@@ -37,36 +40,47 @@ function OccupationSearch() {
 
   return (
     <div className="Search">
-      <h1>List of professionals</h1>
+      <h1>PROFESSIONALS</h1>
       <input
+        className="search-input-city"
+        type="text"
+        placeholder="Search by City..."
+        onChange={(e) => setsearchByLocation(e.target.value)}
+      />
+      <input
+        className="search-input-occupation"
         type="text"
         placeholder="Search by Occupation..."
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setSearchByCity(e.target.value)}
       />
-      {filteredCountries.map((country, idx) => (
-        <CountryDetail key={idx} {...country} />
+      {filteredprofessionals.map((element, idx)  => (
+        <ProfessionalDetail key={idx} {...element} />
       ))}
+     {filteredprofessionals.length===0 ? <h2>No Professioanls available</h2> : <h2></h2>}
     </div>
   );
 }
 
-const CountryDetail = (props) => {
-  const { occupation, fullName, phoneNo , location } = props;
+const ProfessionalDetail = (props) => {
+  const { occupation, fullName, phoneNo, location,email } = props;
 
   return (
     <>
           
-          <div className='ml-5 mt-3'>
-            <Card style={{ width: '14rem' }}>
+          <div className='mt-3'>
+            <Card style={{ width: '30rem' }}>
               <Card.Body>
-                <Card.Title style={{color: 'black' }}>{fullName}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{occupation}</Card.Subtitle>
-                <Card.Text style={{color: 'black'}}>
-                <small>{location} </small>
-                </Card.Text>
-                <Card.Text style={{color: 'black'}}>
-                <small>{phoneNo} </small>
-                </Card.Text>
+                <Card.Title style={{color: 'black' }}>Name: {fullName}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Occupation: {occupation}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
+                  City     : {location}
+                </Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
+                 Contact   : {phoneNo} 
+                </Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
+                 Email address   : {email} 
+                </Card.Subtitle>
               </Card.Body>
            </Card>
       </div>

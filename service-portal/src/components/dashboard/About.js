@@ -1,5 +1,7 @@
 import React from 'react'
 import './About.css'
+import Sidebar from './Sidebar';
+import NavigationBar from './NavigationBar';
 
 export const About = () => {
   return (
@@ -8,7 +10,7 @@ export const About = () => {
         <h1>About Us Page</h1>
         <p>Service Transaction Portal is launched in the year 2021. It is one of the biggest platforms that collaborate customers and service professionals. This is a small attempt from the engineers of BITS,PILANI to bring out an interface for people and also for a good experience for us</p>
       </div>
-      <h1 style={{ textAlign: 'center' }, { marginLeft: '200px' }, { fontSize: '2.5em' }}>Our Team</h1>
+      <h1 style={{ textAlign: 'center' }}>Our Team</h1>
       <div className="row">
         <div className="column">
           <div className="card">

@@ -19,7 +19,8 @@ router.get('/all',async (req,res) => {
                 "fullName" : element['fullName'],
                 "occupation" : element['occupation'],
                 "phoneNo": element['phoneNo'],
-                "location":element['location']
+                "location":element['location'],
+                "email":element['email']
             }
             return occupations.push(object);
         });

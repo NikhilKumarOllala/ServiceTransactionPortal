@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar';
 
-import NavigationBarprof from './NavigationBarprof';
+import NavigationBar from './NavigationBar';
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -22,12 +22,8 @@ margin-right: 6em;
 `;
 
 export const Profile = () => (
-
   <Hemlo>
-    <NavigationBarprof />
+    <NavigationBar />
       <Sidebar />
-     <h2>USER PROFILE</h2>
-    <p>TRFDHHJDSAFGAG</p>
   </Hemlo>
-
 )
