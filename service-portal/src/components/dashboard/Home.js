@@ -13,7 +13,33 @@ library.add(faTrash);
 
 
 
+
+
+
 export class Home extends Component {
+
+
+  
+
+  //  change=(e,id)=> {
+  //   console.log(e,id);
+  
+  //   axios.patch('http://localhost:8000/api/'+id, 
+  //   { 
+      
+  //     status: e.target.value
+  //   }, 
+    
+  // );
+  // this.setState({
+  //   status:e.target.value,
+
+  // });
+  
+  
+  
+   
+  // }
 
   state={
     
@@ -21,8 +47,11 @@ export class Home extends Component {
     body:'',
     location:'',
     profession:'',
-    posts: []
+    posts: [],
+    status:'',
+    pid:''
   };
+  
   componentDidMount=()=>{
     this.setState({
       c_id:jwt_decode(document.cookie.split('=')[1]).id
@@ -71,6 +100,7 @@ export class Home extends Component {
       body: document.getElementById('body').value,
       location:document.getElementById('location').value,
       profession:document.getElementById('profession').value,
+      status:'Available'
     };
 
     axios({
@@ -105,6 +135,8 @@ export class Home extends Component {
     })
 
   }
+
+  
 
  
   
@@ -155,7 +187,7 @@ export class Home extends Component {
             <textarea 
             placeholder="Enter body" 
             name="body" 
-            cols="30" 
+            cols="70 " 
             rows="10"
             id='body'
          value={this.state.body}
@@ -166,6 +198,7 @@ export class Home extends Component {
            
             <button type="submit">Add Post</button>
             
+            
 
           </form>
           {/* <div className="blog-">
@@ -174,7 +207,7 @@ export class Home extends Component {
               this.displayBlogPost(this.state.posts)
             }
           </div> */}
-          <ListItems items={this.state.posts} ></ListItems>
+          <ListItems items={this.state.posts} change={this.change} ></ListItems>
 
      </header>
 

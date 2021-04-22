@@ -11,6 +11,7 @@ const PORT=process.env.PORT || 8000;
 //http://localhost:8000
 const routes=require('./Routes/api');
 const routes1=require('./Routes/api1');
+const routes2=require('./Routes/api2');
 
 const MONGODB_URI='mongodb+srv://nivesh:admin@cluster0.ukfvq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //|| 'mongodb://localhost/mern_youtube'
@@ -37,6 +38,7 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use('/api',routes);
 app.use('/api1',routes1);
+app.use('/api2',routes2);
 
 
 app.listen(PORT,console.log(`Server is starting at ${PORT}`));

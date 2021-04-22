@@ -1,9 +1,25 @@
 import React from 'react'
 import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+
+function change  (e,id)  {
+  axios.patch('http://localhost:8000/api/'+id, { 
+    
+    status: e.target.value
+  })
+.then(res => this.setState({
+status:e.target.value,
+}));
+
+}
+
+
+
 
 function ListItems(props){
     const items=props.items;
+   // console.log(items);
     return items.map((item,index)=>{
       
         return(
@@ -17,7 +33,16 @@ function ListItems(props){
                 //    onClick={()=> props.deleteItem(item.key)}
                   />
              </span>
+             
              <button id="status">Status Button</button>
+             <select name="status" id="status" className="dropdown" placeholder='status' value={item.status} onChange={(e)=>change(e,item._id)}>
+                    
+                    
+                    <option value="Available">Available</option>
+                    <option value="Done" >Done</option>
+                    <option value="Ongoing">Ongoing</option>
+                    
+                </select>
   
           </div>
           

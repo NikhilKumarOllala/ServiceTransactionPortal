@@ -6,12 +6,12 @@ const BlogPost= require('../models/blogPost');
 
 
 
-
+//{status:{$lt:2}},
 
 router.get('/:id', async(req, res) => {
     console.log(req.params.id)
     
-    BlogPost.find({ c_id : req.params.id })
+    BlogPost.find( {$and:  [{ c_id : req.params.id },{status :'Available'}]}            )
     .then((data)=>{
         console.log('Data ',data);
         res.json(data);
@@ -21,6 +21,22 @@ router.get('/:id', async(req, res) => {
     })
  
 });
+
+router.patch('/:pid',async(req,res)=>{
+    BlogPost.updateOne({status: req.body.status}, 
+         function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            console.log("Updated Docs : ", docs);
+        }
+    });
+    
+
+});
+
+
 
 
 router.post('/save', (req, res) => {

@@ -49,7 +49,7 @@ class SideNav extends React.Component {
         const { items, activePath } = this.state;
         return(
             <StyledSideNav>
-                {
+                {/* {
                     items.map((item) => {
                         return (
                             <NavItem 
@@ -62,7 +62,38 @@ class SideNav extends React.Component {
                             />
                         );
                     })
-                }
+                } */}
+
+                        <div>
+                        <NavItem 
+                            path='/ProfHome'
+                            name='ProfHome'
+                            css='fa fa-fw fa-home'
+                            onItemClick={this.onItemClick}
+                            
+                            
+                        />
+                        <p>Home</p>
+
+
+                        <NavItem 
+                            path='/ProfHistory'
+                            name='ProfHistory'
+                            css='fa fa-fw fa-clock'
+                            onItemClick={this.onItemClick}
+                            
+                            
+                        />
+
+                        <p>History</p>
+
+                    </div>
+
+
+
+
+
+
             </StyledSideNav>
         );
     }
@@ -71,8 +102,8 @@ class SideNav extends React.Component {
 const RouterSideNav = withRouter(SideNav);
 
 const StyledNavItem = styled.div`
-    height: 70px;
-    width: 75px; /* width must be same size as NavBar to center */
+    height: 50px;
+    width: 50px; /* width must be same size as NavBar to center */
     text-align: center; /* Aligns <a> inside of NavIcon div */
     margin-bottom: 0;   /* Puts space between NavItems */
     color: ${(props) => props.active ? "#00ffff" : "white"};

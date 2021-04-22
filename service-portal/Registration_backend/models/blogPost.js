@@ -11,10 +11,12 @@ const BlogPostSchema= new Schema({
         default: Date.now()
     },
     location:String,
-    profession:String
+    profession:String,
+    status:String,
+    p_id:String
 
 });
 
-const BlogPost = mongoose.model('Carpenter',BlogPostSchema);
+const BlogPost = mongoose.model('PostDB',BlogPostSchema);
 
 module.exports =BlogPost;
