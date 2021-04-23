@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "./OS.css";
 
 function OccupationSearch() {
@@ -40,15 +44,15 @@ function OccupationSearch() {
 
   return (
     <div className="Search">
-      <h1>PROFESSIONALS</h1>
+      <h1>Professionals</h1>
       <input
-        className="search-input-city"
+        className="search-input-city p-2 my-1 rounded"
         type="text"
         placeholder="Search by City..."
         onChange={(e) => setsearchByLocation(e.target.value)}
       />
       <input
-        className="search-input-occupation"
+        className="search-input-occupation p-2 my-1 rounded"
         type="text"
         placeholder="Search by Occupation..."
         onChange={(e) => setSearchByCity(e.target.value)}
@@ -56,31 +60,43 @@ function OccupationSearch() {
       {filteredprofessionals.map((element, idx)  => (
         <ProfessionalDetail key={idx} {...element} />
       ))}
-     {filteredprofessionals.length===0 ? <h2>No Professioanls available</h2> : <h2></h2>}
+     {filteredprofessionals.length===0 ? <h2>NO Results :(</h2> : <h2></h2>}
     </div>
   );
 }
 
 const ProfessionalDetail = (props) => {
-  const { occupation, fullName, phoneNo, location,email } = props;
+  const { occupation, fullName, phoneNo, location, email } = props;
 
   return (
     <>
-          
+
           <div className='mt-3'>
             <Card style={{ width: '30rem' }}>
               <Card.Body>
                 <Card.Title style={{color: 'black' }}>Name: {fullName}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Occupation: {occupation}</Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
-                  City     : {location}
+                  City: {location}
                 </Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
-                 Contact   : {phoneNo} 
+                Contact: {phoneNo} 
                 </Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
-                 Email address   : {email} 
-                </Card.Subtitle>
+                <Card.Img variant="bottom" className="im" src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/worker.png"/>
+        <Accordion defaultActiveKey="0">
+      <Row className="m-0">
+        <Col className="">
+              <Row className="px-0" style={{padding:'0px'}}>
+                <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+                    Click to View More
+                </Accordion.Toggle>
+              </Row>
+    <Accordion.Collapse eventKey="1">
+      <Row className="p-2">Email: {email}</Row>
+    </Accordion.Collapse>
+    </Col>
+    </Row>
+</Accordion>
               </Card.Body>
            </Card>
       </div>

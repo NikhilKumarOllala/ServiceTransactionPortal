@@ -6,12 +6,11 @@
 .Search {
   margin-top: 100px;
   align-self: center;
-  margin-left: 630px;
+  margin-left: 500px;
 }
 h1.Search {
   font-style: oblique;
   font-family: "Courier New", Courier, monospace;
-  text-decoration-color: darkolivegreen;
 }
 h2.Search {
   font-size: larger;
@@ -29,4 +28,12 @@ h2.Search {
   margin-right: 500px;
   width: 500px;
   font-size: 24px;
+}
+
+.im {
+  border-radius: 50%;
+  margin-left: 300px;
+  margin-top: -150px;
+  width: 100px;
+  height: 100px;
 }
