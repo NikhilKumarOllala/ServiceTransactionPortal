@@ -92,7 +92,7 @@ const ProfessionalDetail = (props) => {
                 </Accordion.Toggle>
               </Row>
     <Accordion.Collapse eventKey="1">
-      <Row className="p-2">Email: {email}</Row>
+      <Row className="p-2" style={{color:'black'}}>Email: {email}</Row>
     </Accordion.Collapse>
     </Col>
     </Row>

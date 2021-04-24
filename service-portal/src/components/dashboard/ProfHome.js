@@ -41,7 +41,7 @@ export class ProfHome extends Component {
 
     })
     .catch((error)=>{
-      console.log("data from mongo didnrt receive");
+      console.log("data from mongo didn't receive");
 
     })
   }
