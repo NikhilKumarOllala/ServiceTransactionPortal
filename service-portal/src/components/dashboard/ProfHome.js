@@ -49,14 +49,14 @@ export class ProfHome extends Component {
     console.log('State',this.state);
     return (
       <div className="Home">
+        
         <NavigationBarprof />
       <Sidebarprof />
-        <header>
           
            <ListItemsProf></ListItemsProf>
           
 
-     </header>
+     
 
       </div>
      

@@ -109,6 +109,8 @@ export class Home extends Component {
         confirmButtonText: 'ok'
       }).then((result) =>{
           if (result.isConfirmed) {
+
+
             window.location.replace('/Home')                         
           }
       })
