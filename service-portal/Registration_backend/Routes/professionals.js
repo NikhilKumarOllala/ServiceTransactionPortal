@@ -18,7 +18,9 @@ router.get('/all',async (req,res) => {
             var object = {
                 "fullName" : element['fullName'],
                 "occupation" : element['occupation'],
-                "phoneNo": element['phoneNo']
+                "phoneNo": element['phoneNo'],
+                "location":element['location'],
+                "email":element['email']
             }
             return occupations.push(object);
         });

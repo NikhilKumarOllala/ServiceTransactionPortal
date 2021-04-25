@@ -27,6 +27,7 @@ import { ProfHome } from './components/dashboard/ProfHome';
 import { ProfHistory} from './components/dashboard/ProfHistory';
 import { ProfProfile } from './components/dashboard/ProfProfile';
 import Login_customer from './components/registration/Login_customer';
+import Ongoing from './components/dashboard/Ongoing';
 
 //feedback
 import Feedback from './components/feedback/Feedback'
@@ -60,6 +61,9 @@ function App() {
                   <ProtectedRouteCustomer exact path='/history' component={History}>
                     
                   </ProtectedRouteCustomer>
+                  <ProtectedRouteCustomer exact path='/Ongoing' component={Ongoing}>
+                  
+                  </ProtectedRouteCustomer>
                   
                   <ProtectedRouteCustomer exact path='/profile' component={Profile}>
                   
@@ -92,6 +96,7 @@ function App() {
                   <ProtectedRouteProfessional exact path='/ProfAbout' component={ProfAbout}>
                   
                   </ProtectedRouteProfessional>
+                  
                    
             <Route component={Error} />
               </Switch>}            

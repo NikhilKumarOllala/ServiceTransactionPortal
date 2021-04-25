@@ -2,20 +2,25 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "./OS.css";
 
 function OccupationSearch() {
-  const [countries, setCountries] = useState([]);
+  const [professionals, setprofessionals] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [searchByCity, setSearchByCity] = useState("");
+  const [searchByLocation, setsearchByLocation] = useState("");
+  const [filteredprofessionals, setFilteredprofessionals] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     axios
       .get("http://localhost:4000/professionals/all")
       .then((res) => {
-        setCountries(res.data);
+        setprofessionals(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -24,12 +29,14 @@ function OccupationSearch() {
   }, []);
 
   useEffect(() => {
-    setFilteredCountries(
-      countries.filter((country) =>
-        country.occupation.includes(search.toLowerCase())
+    setFilteredprofessionals(
+      professionals.filter((element) =>
+        element.occupation.toLowerCase().includes(searchByCity.toLowerCase())
+      ).filter((element) =>
+        element.location.toLowerCase().includes(searchByLocation.toLowerCase())
       )
     );
-  }, [search, countries]);
+  }, [searchByCity,searchByLocation, professionals]);
 
   if (loading) {
     return <p>Loading Occupations...</p>;
@@ -37,33 +44,59 @@ function OccupationSearch() {
 
   return (
     <div className="Search">
-      <h1>List of professionals</h1>
+      <h1 style={{color:'black', textDecoration:'underline' }}>Search for Professionals</h1>
       <input
+        className="search-input-city p-2 my-1 rounded"
+        type="text"
+        placeholder="Search by City..."
+        onChange={(e) => setsearchByLocation(e.target.value)}
+      />
+      <input
+        className="search-input-occupation p-2 my-1 rounded"
         type="text"
         placeholder="Search by Occupation..."
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setSearchByCity(e.target.value)}
       />
-      {filteredCountries.map((country, idx) => (
-        <CountryDetail key={idx} {...country} />
+      {filteredprofessionals.map((element, idx)  => (
+        <ProfessionalDetail key={idx} {...element} />
       ))}
+     {filteredprofessionals.length===0 ? <h2>NO Results :(</h2> : <h2></h2>}
     </div>
   );
 }
 
-const CountryDetail = (props) => {
-  const { occupation, fullName, phoneNo } = props;
+const ProfessionalDetail = (props) => {
+  const { occupation, fullName, phoneNo, location, email } = props;
 
   return (
     <>
-          
-          <div className='ml-5 mt-3'>
-            <Card style={{ width: '14rem' }}>
+
+          <div className='mt-3'>
+            <Card style={{ width: '40rem' }}>
               <Card.Body>
-                <Card.Title style={{color: 'black' }}>{fullName}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{occupation}</Card.Subtitle>
-                <Card.Text style={{color: 'black'}}>
-                <small>{phoneNo} </small>
-                </Card.Text>
+                <Card.Title style={{color: 'black' }}>Name: {fullName}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Occupation: {occupation}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
+                  City: {location}
+                </Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
+                Contact: {phoneNo} 
+                </Card.Subtitle>
+                <Card.Img variant="bottom" className="im" src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/worker.png"/>
+        <Accordion defaultActiveKey="0">
+      <Row className="m-0">
+        <Col className="">
+              <Row className="px-0" style={{padding:'0px'}}>
+                <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+                    Click to View More
+                </Accordion.Toggle>
+              </Row>
+    <Accordion.Collapse eventKey="1">
+      <Row className="p-2" style={{color:'black'}}>Email: {email}</Row>
+    </Accordion.Collapse>
+    </Col>
+    </Row>
+</Accordion>
               </Card.Body>
            </Card>
       </div>

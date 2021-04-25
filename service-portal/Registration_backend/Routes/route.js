@@ -11,6 +11,11 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
+const Customer = require('../models/Signup_model_customer');
+/*router.get('/cookie' , (req,res) => {
+    res.setHeader('Set-Cookie','newUser=true')
+    res.send('got the cookies')
+})*/
 router.get('/signupProfessional',async (req,res) => {
     
     let loginemail = req.query.loginEmail.toString()
@@ -40,7 +45,7 @@ router.get('/signupProfessional',async (req,res) => {
                             id : id,
                             type : "professional"
                         }        
-                        var token = jwt.sign({id:id,type:"professional"},process.env.JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"professional",role:user.occupation},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
                         res.send(token);                       
                         
                     }else{
@@ -57,10 +62,37 @@ router.get('/signupProfessional',async (req,res) => {
             
         }
     })
-
-    
+  
     
 })
+
+// router.get('/customers',function(req,res){
+//     console.log('Get request for customer details');
+//     Customer.find({})
+//     .exec(function(err,customers){
+//         if(err){
+//             console.log('Error retrieving customer details');
+//         }
+//         else{
+//             res.json(customers);
+//         }
+//     });
+// });
+
+// router.get('/customers:id',function(req,res){
+//     console.log('Get request for customer details');
+//     Customer.find({})
+//     .exec(function(err,customers){
+//         if(err){
+//             console.log('Error retrieving customer details');
+//         }
+//         else{
+//             res.json(customers);
+//         }
+//     });
+// });
+
+
 router.get('/signupCustomer',async (req,res) => {
     console.log(req.query.loginEmail);
     let loginemail = req.query.loginEmail.toString()

@@ -8,7 +8,7 @@ var isEmpty = false;
 function check_pass() {
     if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
-        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').style.color = 'green';       
         document.getElementById('message').innerHTML = 'matching';
        
         
