@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Profiler ,useEffect,useState,Component} from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar';
-
-import NavigationBarprof from './NavigationBarprof';
+import axios from "axios";
+import NavigationBar from './NavigationBar';
+import { render } from 'react-dom';
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -21,13 +22,47 @@ margin-right: 6em;
 
 `;
 
-export const Profile = () => (
+// export const Profile = () => (
 
-  <Hemlo>
-    <NavigationBarprof />
-      <Sidebar />
-     <h2>USER PROFILE</h2>
-    <p>TRFDHHJDSAFGAG</p>
-  </Hemlo>
+//   <Hemlo>
+//     <NavigationBar />
+//       <Sidebar />
+//      <h2>USER PROFILE for customer</h2>
+//     <p>Customer profile</p>
+//   </Hemlo>
 
-)
+// )
+
+
+var cID;
+
+const jwt = require('jsonwebtoken')
+function getUserID(){
+    var token = document.cookie.split('=')[1];
+    jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {
+      if (err) {
+          console.log(err);
+      } else{
+        cID = decodedToken.id;
+      }
+    })
+  }
+
+
+export class Profile extends Component {
+      render() {
+        getUserID();
+        
+
+
+        return (
+          <div>
+            <h1> Hi {cID}</h1>
+          </div>
+        )
+      }
+    }
+
+    
+    
+    export default Profile
