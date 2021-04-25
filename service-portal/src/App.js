@@ -9,7 +9,7 @@ import Error from './components/Error'
 import Login from './components/registration/Login.js'
 import dashboard from './components/dashboard/dummy_dashboard.js'
 import {ProtectedRouteCustomer,ProtectedRouteProfessional} from './ProtectedRoute/ProtectedRoute'
-
+import OngoingProf from './components/dashboard/OngoingProf'
 
 //dashboard
 //import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -94,6 +94,9 @@ function App() {
                   </ProtectedRouteProfessional>
                   
                   <ProtectedRouteProfessional exact path='/ProfAbout' component={ProfAbout}>
+                  
+                  </ProtectedRouteProfessional>
+                  <ProtectedRouteProfessional exact path='/OngoingProf' component={OngoingProf}>
                   
                   </ProtectedRouteProfessional>
                   

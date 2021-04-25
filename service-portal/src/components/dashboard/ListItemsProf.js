@@ -29,6 +29,7 @@ export class ListItemsProf extends Component {
       pid:'',
       Done:'',
     posts: [],
+    cust:[]
     
 
   };
@@ -37,11 +38,28 @@ export class ListItemsProf extends Component {
 
   componentDidMount(){
    this.getBlogPost();
-   
-   
+ 
   };
   
+getCustDetails(id){
+  console.log("get cust details :" + id);
+  axios.get('http://localhost:4000/api3/'+id)
+  .then((response)=>{
+    const data= response.data;
+   
+    this.setState({cust:data});
 
+    console.log("retrieve cust data from mongo for posts")
+    console.log(data);
+
+
+  })
+  .catch((error)=>{
+    console.log("data from mongo didnrt receive");
+
+  })
+
+}
   
  
 
@@ -173,8 +191,15 @@ export class ListItemsProf extends Component {
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
 
-    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
+    
+    
    
+   
+    
+    
+
+    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
+    <button id="show" onClick={()=>this.getCustDetails(item.c_id)}> Customer Details</button>
    
 
 
