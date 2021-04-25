@@ -3,11 +3,14 @@ const express = require('express')
 const router = express.Router()
 const signupTemplatecopy = require('../models/Signup_model')
 const signupTemplatecopy2 = require('../models/Signup_model_customer')
-const cookieParser = require('cookie-parser')
+const feedbackTemplatecopy = require('../models/feedback_model');
+
+
 const bcrypt = require('bcrypt')
-const { response } = require('express')
+
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
+
 const Customer = require('../models/Signup_model_customer');
 /*router.get('/cookie' , (req,res) => {
     res.setHeader('Set-Cookie','newUser=true')
@@ -17,12 +20,14 @@ router.get('/signupProfessional',async (req,res) => {
     
     let loginemail = req.query.loginEmail.toString()
     let  loginpassword=req.query.loginPassword.toString()
+    
+
     signupTemplatecopy.findOne({
         'email': loginemail
     }
     ).exec((err,user) =>{
         if (err) {
-            console.log('error getting users');
+            console.log('error getting users');            
         }else{
             if (!user) {
                 console.log("user dosent exist!!");
@@ -115,7 +120,7 @@ router.get('/signupCustomer',async (req,res) => {
                             id : id,
                             type : "customer"
                         }        
-                        var token = jwt.sign({id:id,type:"customer"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"customer"},process.env.JWT,{expiresIn:24*60*60})             
                         res.send(token); 
                     }else{
                         console.log('wrong password!!');
@@ -184,6 +189,79 @@ router.post('/signupCustomer',async (request,response) => {
     })
 })
 
+router.post('/feedback',(req,res) => {
+    const customer_id = req.body.c_id;
+    const professional_id = req.body.p_id;
+    const rating = req.body.rating;
+    const review = req.body.review;
+    const feedback = new feedbackTemplatecopy({
+        rating:rating,
+        review:review,
+        customer_id:customer_id,
+        professional_id:professional_id
+    })
+    feedback.save()
+    .then(data => {
+        console.log("feedback uploaded");
+        return res.status(200).json(data);
+
+    })
+    .catch(error => {
+        console.log("error in feedback uploading" + error);
+        return res.status(404).json(error);
+    })
+})
+router.post('/get_feedback_prof',(req,res)=>{
+    const pID = req.body.prof.p_id;
+    //console.log("p_id is "+req.body.prof.p_id);
+    feedbackTemplatecopy.find(
+        {
+            'professional_id':pID
+        }
+    ).exec((err,feedback) => {
+        if (err) {
+            console.log("error in reciving feedback");
+            return res.status(404);
+        }else{
+            if(!feedback){
+                console.log("no feedback yet");
+                return res.status(201);
+            }else
+            {
+                //console.log("feedbacks recived");
+                //console.log("feedbacks are" + feedback + "...");
+                return res.status(200).send(feedback);
+            }
+        }
+    })
+   /*  var sql_query="SELECT * FROM feedback_prof WHERE p_id='"+req.body.prof.p_id+"'";
+    db.query(sql_query,(err,result)=>{
+        if(err){
+            console.log("error retrieving professor feedback "+err);
+        }
+        else{
+            console.log("result is "+JSON.stringify(result));
+            res.send(result);
+        }
+    }) */
+})
+
+router.post('/givenFeedback',(req,res) => {
+    const customer_id = req.body.customer_id
+    const profession_id = req.body.profession_id
+    signupTemplatecopy.findOne({
+        'customer_id' : customer_id,
+        'profession_id' : profession_id
+    }).exec((err,result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            if (result) {
+                return res.status(200).json(result);
+            }
+        }
+    })
+})
 
 
 module.exports = router;
