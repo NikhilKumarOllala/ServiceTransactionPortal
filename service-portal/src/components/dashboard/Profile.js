@@ -77,7 +77,7 @@ function getUserID(){
         <Col>
             <h1 style={{color:'black' , fontSize:'3rem',marginRight:'130px',marginBottom:'0px'}}>USER PROFILE</h1>
             <Form className="form" style={{color:'black'}}>  
-            <Card.Img variant="top" className="im" style={{marginRight:'-40px'}}src="https://us.123rf.com/450wm/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg?ver=6"/>
+            {/* <Card.Img variant="top" className="im" style={{marginRight:'-60px'}}src="https://us.123rf.com/450wm/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg?ver=6"/> */}
 
             {/* <p> {this.state.msg}</p>    */}
   <Form.Group controlId="formCategory1">
