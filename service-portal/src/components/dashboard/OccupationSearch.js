@@ -72,7 +72,7 @@ const ProfessionalDetail = (props) => {
     <>
 
           <div className='mt-3'>
-            <Card style={{ width: '30rem' }}>
+            <Card style={{ width: '40rem' }}>
               <Card.Body>
                 <Card.Title style={{color: 'black' }}>Name: {fullName}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Occupation: {occupation}</Card.Subtitle>
