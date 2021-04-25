@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import React, { Component } from 'react';
 import './Home.css';
 import ListItems from './Listitems';
@@ -5,95 +6,225 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
+import axios from 'axios';
+const Swal = require('sweetalert2')
+const jwt = require('jsonwebtoken')
+var token = document.cookie.split('=')[1];
 library.add(faTrash);
 
+
+var custid;
+
+
+
 export class Home extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      items:[],
-      currentItem:{
-        text:'',
-        key:''
-      }
-    }
-    this.handleInput=this.handleInput.bind(this);
-    this.addItem=this.addItem.bind(this);
-    this.deleteItem=this.deleteItem.bind(this);
-    // this.setUpdate=this.setUpdate.bind(this);
+  constructor(props) {
+    super(props)
+  
+    this.submit=this.submit.bind(this);
   }
+  
 
-  handleInput(e){
-    this.setState({
-      currentItem:{
-        text: e.target.value,
-        key: Date.now()
 
-      }
-    })
-  }
+  
 
-  addItem(e){
-    e.preventDefault();
-    const newItem = this.state.currentItem;
-    if(newItem.text !==""){
-      const items = [...this.state.items, newItem];
-    this.setState({
-      items: items,
-      currentItem:{
-        text:'',
-        key:''
-      }
-    })
-    }
-  }
+  //  change=(e,id)=> {
+  //   console.log(e,id);
+  
+  //   axios.patch('http://localhost:8000/api/'+id, 
+  //   { 
+      
+  //     status: e.target.value
+  //   }
+    
+  // );
+  // this.setState({
+  //   status:e.target.value,
 
-  deleteItem(key){
-    const filteredItems= this.state.items.filter(item => item.key!==key);
-    this.setState({
-      items:filteredItems
-    })
-
-  }
-
-  // setUpdate(text,key){
-  //   const items=this.state.items;
-  //   items.map(item=>{
-  //     if(item.key===key){
-  //       item.text=text;
-  //     }
-
-  //   })
-  //   this.setState({
-  //     items:items
-  //   })
+  // });
+  
+  
+  
+   
   // }
 
+  state={
+    
+    c_id:'',
+    body:'',
+    location:'',
+    profession:'',
+    posts: [],
+    status:'',
+    pid:''
+  };
+  
+  componentDidMount=()=>{
+    this.setState({
+      c_id:jwt_decode(document.cookie.split('=')[1]).id
+    })
+    
+    
+  };
 
 
+  
+
+            
+
+  handleChange=(event)=>{
+    const target=event.target;
+    const name=target.name;
+    const value = target.value;
+    
+    this.setState({
+      [name]: value
+    });
+
+  };
+
+  submit = (event)=>{
+    console.log("button clicked");
+    //event.preventDefault();
+    const payload={
+     
+      c_id: custid,
+      body: document.getElementById('body').value,
+      location:document.getElementById('location').value,
+      profession:document.getElementById('profession').value,
+     
+    };
+
+    axios({
+      url:'http://localhost:4000/api/available',
+      method:'POST',
+      data:payload
+
+    }).then(()=>{
+      console.log("data sent to server");
+      Swal.fire({
+        title: 'success',
+        text: "success",
+        icon: 'success',
+        confirmButtonText: 'ok'
+      }).then((result) =>{
+          if (result.isConfirmed) {
+            window.location.replace('/Home')                         
+          }
+      })
+     
+      // this.resetUserInput();
+      //this.getBlogPost();
+    })
+    .catch((error)=>{
+      console.log("error while sending data",error);
+    });
+    
+
+   
+  };
+
+  // resetUserInput=()=>{
+  //   this.setState({
+  //     body:''
+     
+  //   });
+  // };
+  // deleteItem(key){
+  //   const filteredItems= this.state.items.filter(item => item.key!==key);
+  //   this.setState({
+  //     items:filteredItems
+  //   })
+
+  // }
+
+  
+
+ 
+  
 
 
   render() {
+    custid=jwt_decode(document.cookie.split('=')[1]).id;
+    console.log('State',this.state);
     return (
+      
       
       <div className="Home">
         <NavigationBar />
         <Sidebar />
         <header>
-       <form id='to-do-form' onSubmit={this.addItem}>
-         <input type="text" placeholder="Enter Text"
-         value={this.state.currentItem.text}
-         onChange={this.handleInput}/>
-         <button type="submit">Add Post</button>
-       </form>
+          
+          <form onSubmit={this.submit}>
+            <div className="form-input">
+            <label htmlFor="profession" className='grey-text'>
+                    Profession :
+                </label>
+                &nbsp;&nbsp;
+                <select name="profession" id="profession" className="dropdown" placeholder='profession'>
+                    
+                    
+                    <option value="carpenter">Carpenter</option>
+                    <option value="electrician">Electrician</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="painter">Painter</option>
+                    <option value="driver">Driver</option>
+                    <option value="mechanic">Mechanic</option>
+                    
+                </select>
+
+                <label htmlFor="city" className='grey-text'>
+                    City:
+                </label>
+                &nbsp;&nbsp;
+                <select name="city" id="location" className="dropdown" placeholder='city'>
+                    
+                <option value="mumbai">Mumbai</option>
+                    <option value="hyderabad">Hyderabad</option>
+                    <option value="kolkata">Kolkata</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="chennai">Chennai</option>
+                    <option value="vizag">Vizag</option>
+                    <option value="banglore">Banglore</option>
+                    
+                    <option value="ahemdabad">Ahmedabad</option>
+                    <option value="lucknow">Lucknow</option>
+                    <option value="guwahati">Guwahati</option>
+                    
+                </select>
+                <br></br>
+            
+         
+            </div>
+
+            <div className="form-input">
+            <textarea 
+            placeholder="Enter body" 
+            name="body" 
+            cols="70 " 
+            rows="10"
+            id='body'
+         
+         >
+           
+         </textarea>
+         
+            </div>
+           
+            <button type="submit" >Add Post</button>
+            
+            
+
+          </form>
+          {/* <div className="blog-">
+            {
+              
+              this.displayBlogPost(this.state.posts)
+            }
+          </div> */}
+          <ListItems></ListItems>
+
      </header>
-     <ListItems items={this.state.items} 
-     deleteItem={this.deleteItem}
-     ></ListItems>
-     
-     
-
-
 
       </div>
      

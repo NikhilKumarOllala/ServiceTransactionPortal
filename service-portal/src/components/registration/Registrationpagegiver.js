@@ -28,8 +28,8 @@ class Registrationpagegiver extends Component {
             phoneNo:'',
             gender:'',            
             password:'',
-            
         }
+        
         this.changeFullName = this.changeFullName.bind(this).non
         this.changeEmail = this.changeEmail.bind(this)
         this.changeGender = this.changeGender.bind(this)

@@ -1,16 +1,18 @@
-POST   http://localhost:4000/app/signupCustomer
+POST  http://localhost:8000/api/save
 Content-Type: application/json
 
 
- {
-    "fullName":"12312nikhil123",
-    "email":"v@g.com",
-    "phoneNo":"7789987898",
-     "gender":"male",
-     "occupation":"student",
-     "password":"vamshipass",
-     "experience":"none"
 
- }
+ 
+{
+
+    "date":"1619284246893",
+     "c_id":"60819fcdcad67e6c60745e10",
+     "body":"hello",
+     "location":"Hyderabad",
+     "profession":"carpenter",
+     "status":"Available",
+}
+ 
 
 
