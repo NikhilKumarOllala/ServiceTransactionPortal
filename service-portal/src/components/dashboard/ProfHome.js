@@ -24,27 +24,27 @@ export class ProfHome extends Component {
     this.setState({
       role:jwt_decode(document.cookie.split('=')[1]).role
     })
-    this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role);
+    //this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role);
     
   };
 
-  getBlogPost=(role)=>{
+  // getBlogPost=(role)=>{
     
     
-    axios.get('http://localhost:8000/api1/'+role)
-    .then((response)=>{
-      const data= response.data;
-      console.log(data);
-      this.setState({posts:data});
-      console.log("data from mongo recieved to home")
+  //   axios.get('http://localhost:4000/api1/'+role)
+  //   .then((response)=>{
+  //     const data= response.data;
+  //     console.log(data);
+  //     this.setState({posts:data});
+  //     console.log("data from mongo recieved to home")
 
 
-    })
-    .catch((error)=>{
-      console.log("data from mongo didnrt receive");
+  //   })
+  //   .catch((error)=>{
+  //     console.log("data from mongo didnrt receive");
 
-    })
-  }
+  //   })
+  // }
 
   render() {
     console.log('State',this.state);

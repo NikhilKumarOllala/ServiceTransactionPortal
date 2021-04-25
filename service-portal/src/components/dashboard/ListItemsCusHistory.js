@@ -48,7 +48,7 @@ export class ListItemsCusHistory extends Component {
     
     console.log("listitems "+c_id);
     
-    axios.get('http://localhost:8000/api2/'+c_id)
+    axios.get('http://localhost:4000/api2/'+c_id)
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});

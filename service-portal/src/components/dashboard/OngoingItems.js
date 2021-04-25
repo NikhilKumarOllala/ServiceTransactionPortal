@@ -2,54 +2,53 @@ import React, { Component } from 'react'
 import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import jwt_decode from "jwt-decode";
-
 const Swal=require('sweetalert2');
+
+
 const jwt = require('jsonwebtoken')
 
  
 
   
-var profession;
-var pid;
+var custid;
 
-function getUserrole(){
-  profession=jwt_decode(document.cookie.split('=')[1]).role;
-  pid=jwt_decode(document.cookie.split('=')[1]).id;
-
-
+function getUserID(){
+  var token = document.cookie.split('=')[1];
+  jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {
+    if (err) {
+        console.log(err);
+    } else{
+      custid= decodedToken.id;
+     
+    }
+  })
 }
 
 
-export class ListItemsProf extends Component {
+export class Listitems extends Component {
 
   
 
   state={
-      pid:'',
-      Done:'',
-    posts: [],
-    
+    posts: []
 
   };
-
 
 
   componentDidMount(){
    this.getBlogPost();
    
-   
   };
   
 
   
- 
+
 
   getBlogPost(){
     
-    console.log("listitems "+profession);
+    console.log("listitems "+custid);
     
-    axios.get('http://localhost:4000/api1/'+profession)
+    axios.post('http://localhost:4000/api1/getongoing',{id:custid})
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});
@@ -60,56 +59,26 @@ export class ListItemsProf extends Component {
 
     })
     .catch((error)=>{
-      console.log("data from mongo didnrt receive");
+      console.log("error is :"+error)
+      console.log("data from mongo didnrt receive listiems");
 
     })
   }
 
-  // done(id){
+  done(id,location1,profession1,body1,profid){
 
-  //   this.setState(
-  //     (prev)=>{
-  //       return {
-  //         ...prev,
-  //         posts: prev.posts.map((item)=>{
-  //           if(item._id!==id){
-  //             return item;
-  //           }
-  //           else{
-              
-  //             return {
-  //               ...item,
-  //               status:"Ongoing"
-                
-  //             }
-  //           }
-  //         })
-
-  //       }
-
-  //     }
-
-  //   )
-
-  //   console.log("change: "+this.state.posts);
-    
-    
-  // }
-  take(id,location1,profession1,body1,custid){
-    
-   
     const payload={
      
       c_id: custid,
       body:body1 ,
       location:location1,
       profession:profession1,
-      p_id:pid
+      p_id:profid
      
     };
 
     axios({
-      url:'http://localhost:4000/api1/ongoing',
+      url:'http://localhost:4000/api/done',
       method:'POST',
       data:payload
 
@@ -122,10 +91,10 @@ export class ListItemsProf extends Component {
         confirmButtonText: 'ok'
       }).then((result) =>{
           if (result.isConfirmed) {
-            axios.post('http://localhost:4000/api/deleteavailable',{postid:id})
+            axios.post('http://localhost:4000/api1/deleteongoing',{postid:id})
             .then((response)=>{
       
-              console.log("deleted from available")
+              console.log("deleted from ongoing")
       
             })
             .catch((error)=>{
@@ -134,15 +103,10 @@ export class ListItemsProf extends Component {
         
             })
 
-
-            window.location.replace('/profHome')                         
+            window.location.replace('/Ongoing')                         
           }
       })
 
-      
-
-      
-     
 
     })
     .catch((error)=>{
@@ -150,18 +114,29 @@ export class ListItemsProf extends Component {
     });
 
 
+    
+
+
+    
 
 
   }
 
 
+
+
+
   render() {
-    getUserrole();
-    
+    getUserID();
     
     const items=this.state.posts;
 
     console.log("lisitmes");
+    
+    
+    
+
+    
 
      return this.state.posts.map((item,index)=>{
 
@@ -172,29 +147,23 @@ export class ListItemsProf extends Component {
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
+    
+  
 
-    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
-   
-   
-
+          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id)}>Done</button>
+          
 
     </div>
 
      )
        
-         
-           
-           
+
          
    
        })
-    
-    
-    
- 
 
   }
 }
 
-export default ListItemsProf
+export default Listitems
 

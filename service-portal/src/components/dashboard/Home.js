@@ -63,26 +63,10 @@ export class Home extends Component {
     this.setState({
       c_id:jwt_decode(document.cookie.split('=')[1]).id
     })
-    //this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).id);
+    
     
   };
 
-  // getBlogPost=(c_id)=>{
-  //   console.log(c_id);
-    
-  //   axios.get('http://localhost:8000/api/'+c_id)
-  //   .then((response)=>{
-  //     const data= response.data;
-  //     this.setState({posts:data});
-  //     console.log("data from mongo recieved to home")
-
-
-  //   })
-  //   .catch((error)=>{
-  //     console.log("data from mongo didnrt receive");
-
-  //   })
-  // }
 
   
 
@@ -108,11 +92,11 @@ export class Home extends Component {
       body: document.getElementById('body').value,
       location:document.getElementById('location').value,
       profession:document.getElementById('profession').value,
-      status:'Available'
+     
     };
 
     axios({
-      url:'http://localhost:8000/api/save',
+      url:'http://localhost:4000/api/available',
       method:'POST',
       data:payload
 
@@ -179,10 +163,13 @@ export class Home extends Component {
                 &nbsp;&nbsp;
                 <select name="profession" id="profession" className="dropdown" placeholder='profession'>
                     
-                    <option value="carpenter" placeholder='profession'>Carpenter</option>
+                    
+                    <option value="carpenter">Carpenter</option>
                     <option value="electrician">Electrician</option>
                     <option value="tutor">Tutor</option>
-                    <option value="other">Other</option>
+                    <option value="painter">Painter</option>
+                    <option value="driver">Driver</option>
+                    <option value="mechanic">Mechanic</option>
                     
                 </select>
 
@@ -192,9 +179,17 @@ export class Home extends Component {
                 &nbsp;&nbsp;
                 <select name="city" id="location" className="dropdown" placeholder='city'>
                     
-                    <option value="Hyderabad" placeholder='city'>Hyderabad</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Other">Other</option>
+                <option value="mumbai">Mumbai</option>
+                    <option value="hyderabad">Hyderabad</option>
+                    <option value="kolkata">Kolkata</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="chennai">Chennai</option>
+                    <option value="vizag">Vizag</option>
+                    <option value="banglore">Banglore</option>
+                    
+                    <option value="ahemdabad">Ahmedabad</option>
+                    <option value="lucknow">Lucknow</option>
+                    <option value="guwahati">Guwahati</option>
                     
                 </select>
                 <br></br>
