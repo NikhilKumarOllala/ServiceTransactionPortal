@@ -80,7 +80,7 @@ function getUserID(){
            
           <div className = 'profile'> 
           <div className='mt-3'>
-            <Card style={{ width: '50rem' },{height: '80rem'}}>
+            <Card style={{ width: '50rem' },{height: '55rem'}}>
               <Card.Body>
               <Container>
         <Row >

@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa'
 import Swal from 'sweetalert2';
 import './StarRating.css'
 
-var rName,cID,pID = "professional_id" //hardcoded here;
+var rName,cID,pID = "606096414566be0bbc39790c" //hardcoded here;
 pID = sessionStorage.getItem('pID');
 var rColour;
 var styling = {

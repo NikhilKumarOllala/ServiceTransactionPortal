@@ -69,7 +69,7 @@ class View_feed_prof extends Component{
                 <div className="side_main_box">
                                     
                     
-                    <h3>Feedbacks received: {avgRating  }</h3>
+                    <h3>Feedbacks received: </h3>
                     {this.show_cards()}
                 </div>
             </div>
