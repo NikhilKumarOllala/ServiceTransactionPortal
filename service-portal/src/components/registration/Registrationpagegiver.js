@@ -8,7 +8,7 @@ var isEmpty = false;
 function check_pass() {
     if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
-        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').style.color = 'green';       
         document.getElementById('message').innerHTML = 'matching';
        
         
@@ -28,8 +28,8 @@ class Registrationpagegiver extends Component {
             phoneNo:'',
             gender:'',            
             password:'',
+            
         }
-        
         this.changeFullName = this.changeFullName.bind(this).non
         this.changeEmail = this.changeEmail.bind(this)
         this.changeGender = this.changeGender.bind(this)
