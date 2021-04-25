@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
+
+.im {
+  border-radius: 50%;
+  margin-left: 100px;
+  width: 200px;
+  height: 100px;
+}
+
+.labels {
+  margin-left: 10px;
+}
+
+.prof_profile {
+  align-self: center;
+  margin-top: 50px;
+}

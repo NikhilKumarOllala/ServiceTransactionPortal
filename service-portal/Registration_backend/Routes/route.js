@@ -9,6 +9,7 @@ const { response } = require('express')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const Customer = require('../models/Signup_model_customer');
+const Professional = require('../models/Signup_model');
 /*router.get('/cookie' , (req,res) => {
     res.setHeader('Set-Cookie','newUser=true')
     res.send('got the cookies')
