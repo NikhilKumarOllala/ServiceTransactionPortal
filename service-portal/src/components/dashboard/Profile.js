@@ -94,7 +94,7 @@ function getUserID(){
 
   <Form.Group controlId="formCategory2">
     <Form.Label style={{color:'black', fontSize:'1rem'}}>Phone No</Form.Label>
-    <Form.Control type="email" style={{color:'black'}} defaultValue={this.state.phoneno} />
+    <Form.Control type="phone" style={{color:'black'}} defaultValue={this.state.phoneno} />
   </Form.Group>
 
   <Button variant="primary" onClick={this.UpdateProfileHandler}>Update Profile</Button>

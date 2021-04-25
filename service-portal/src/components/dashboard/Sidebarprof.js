@@ -74,6 +74,17 @@ class SideNav extends React.Component {
                             
                         />
                         <p>Home</p>
+                        <NavItem 
+                            path='/OngoingProf'
+                            name='OngoingProf'
+                            css='fa fa-fw fa-home'
+                            onItemClick={this.onItemClick}
+                            
+                            
+                        />
+                        <p>Ongoing</p>
+
+                        
 
 
                         <NavItem 
