@@ -11,9 +11,9 @@ const BlogPost= require('../models/blogPost');
 router.get('/:id', async(req, res) => {
     console.log(req.params.id)
     
-    BlogPost.find( {$and:  [{ c_id : req.params.id },{status :'Available'}]}            )
+    BlogPost.find( {$and:  [{ c_id : req.params.id },{$or :[ {status:"Available"},{status:"Ongoing"}]} ]}            )
     .then((data)=>{
-        console.log('Data ',data);
+        // console.log('Data ',data);
         res.json(data);
     })
     .catch((error)=>{
@@ -23,15 +23,16 @@ router.get('/:id', async(req, res) => {
 });
 
 router.patch('/:pid',async(req,res)=>{
-    BlogPost.updateOne({status: req.body.status}, 
-         function (err, docs) {
-        if (err){
-            console.log(err)
-        }
-        else{
-            console.log("Updated Docs : ", docs);
-        }
-    });
+   await BlogPost.findOneAndUpdate({_id: req.params.pid},{status: req.body.status}, 
+    function (err, docs) {
+   if (err){
+       console.log(err)
+   }
+   else{
+    //    console.log("Updated Docs : ", docs);
+   }
+});
+
     
 
 });
@@ -39,8 +40,13 @@ router.patch('/:pid',async(req,res)=>{
 
 
 
+
+
+
+
+
 router.post('/save', (req, res) => {
-    console.log('Body :' ,req.body);
+  
     const data=req.body;
     const newBlogPost= new BlogPost(data);
 
@@ -49,6 +55,7 @@ router.post('/save', (req, res) => {
             res.status(500).json({msg: 'Sorry,server error'});
         }
         else{
+            console.log('Added');
             res.json({
                 msg:'data has been stored in db'
             });

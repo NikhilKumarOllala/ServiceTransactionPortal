@@ -7,16 +7,23 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
 import axios from 'axios';
+const Swal = require('sweetalert2')
 const jwt = require('jsonwebtoken')
 var token = document.cookie.split('=')[1];
 library.add(faTrash);
 
 
-
+var custid;
 
 
 
 export class Home extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.submit=this.submit.bind(this);
+  }
+  
 
 
   
@@ -28,7 +35,7 @@ export class Home extends Component {
   //   { 
       
   //     status: e.target.value
-  //   }, 
+  //   }
     
   // );
   // this.setState({
@@ -56,26 +63,26 @@ export class Home extends Component {
     this.setState({
       c_id:jwt_decode(document.cookie.split('=')[1]).id
     })
-    this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).id);
+    //this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).id);
     
   };
 
-  getBlogPost=(c_id)=>{
-    console.log(c_id);
+  // getBlogPost=(c_id)=>{
+  //   console.log(c_id);
     
-    axios.get('http://localhost:8000/api/'+c_id)
-    .then((response)=>{
-      const data= response.data;
-      this.setState({posts:data});
-      console.log("data from mongo recieved to home")
+  //   axios.get('http://localhost:8000/api/'+c_id)
+  //   .then((response)=>{
+  //     const data= response.data;
+  //     this.setState({posts:data});
+  //     console.log("data from mongo recieved to home")
 
 
-    })
-    .catch((error)=>{
-      console.log("data from mongo didnrt receive");
+  //   })
+  //   .catch((error)=>{
+  //     console.log("data from mongo didnrt receive");
 
-    })
-  }
+  //   })
+  // }
 
   
 
@@ -93,10 +100,11 @@ export class Home extends Component {
   };
 
   submit = (event)=>{
+    console.log("button clicked");
     //event.preventDefault();
     const payload={
      
-      c_id: jwt_decode(document.cookie.split('=')[1]).id,
+      c_id: custid,
       body: document.getElementById('body').value,
       location:document.getElementById('location').value,
       profession:document.getElementById('profession').value,
@@ -110,9 +118,19 @@ export class Home extends Component {
 
     }).then(()=>{
       console.log("data sent to server");
+      Swal.fire({
+        title: 'success',
+        text: "success",
+        icon: 'success',
+        confirmButtonText: 'ok'
+      }).then((result) =>{
+          if (result.isConfirmed) {
+            window.location.replace('/Home')                         
+          }
+      })
      
-      this.resetUserInput();
-      this.getBlogPost();
+      // this.resetUserInput();
+      //this.getBlogPost();
     })
     .catch((error)=>{
       console.log("error while sending data",error);
@@ -122,19 +140,19 @@ export class Home extends Component {
    
   };
 
-  resetUserInput=()=>{
-    this.setState({
-      body:''
+  // resetUserInput=()=>{
+  //   this.setState({
+  //     body:''
      
-    });
-  };
-  deleteItem(key){
-    const filteredItems= this.state.items.filter(item => item.key!==key);
-    this.setState({
-      items:filteredItems
-    })
+  //   });
+  // };
+  // deleteItem(key){
+  //   const filteredItems= this.state.items.filter(item => item.key!==key);
+  //   this.setState({
+  //     items:filteredItems
+  //   })
 
-  }
+  // }
 
   
 
@@ -143,6 +161,7 @@ export class Home extends Component {
 
 
   render() {
+    custid=jwt_decode(document.cookie.split('=')[1]).id;
     console.log('State',this.state);
     return (
       
@@ -190,13 +209,14 @@ export class Home extends Component {
             cols="70 " 
             rows="10"
             id='body'
-         value={this.state.body}
-         onChange={this.handleChange}>
+         
+         >
+           
          </textarea>
          
             </div>
            
-            <button type="submit">Add Post</button>
+            <button type="submit" >Add Post</button>
             
             
 
@@ -207,7 +227,7 @@ export class Home extends Component {
               this.displayBlogPost(this.state.posts)
             }
           </div> */}
-          <ListItems items={this.state.posts} change={this.change} ></ListItems>
+          <ListItems></ListItems>
 
      </header>
 

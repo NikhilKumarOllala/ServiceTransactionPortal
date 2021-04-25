@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import React, { Component } from 'react';
 import './Home.css';
-import ListItems from './Listitems';
+import ListItemsProf from './ListItemsProf';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebarprof from './Sidebarprof';
@@ -55,7 +55,9 @@ export class ProfHome extends Component {
         <NavigationBarprof />
       <Sidebarprof />
         <header>
-          <ListItems items={this.state.posts} ></ListItems>
+          
+           <ListItemsProf></ListItemsProf>
+          
 
      </header>
 
