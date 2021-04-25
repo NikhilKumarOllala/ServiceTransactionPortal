@@ -44,7 +44,7 @@ function OccupationSearch() {
 
   return (
     <div className="Search">
-      <h1>Professionals</h1>
+      <h1 style={{color:'black', textDecoration:'underline' }}>Search for Professionals</h1>
       <input
         className="search-input-city p-2 my-1 rounded"
         type="text"

@@ -24,8 +24,7 @@ export class ProfHome extends Component {
     this.setState({
       role:jwt_decode(document.cookie.split('=')[1]).role
     })
-    this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role);
-    
+    this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role); 
   };
 
   getBlogPost=(role)=>{
@@ -49,8 +48,6 @@ export class ProfHome extends Component {
   render() {
     console.log('State',this.state);
     return (
-      
-      
       <div className="Home">
         <NavigationBarprof />
       <Sidebarprof />

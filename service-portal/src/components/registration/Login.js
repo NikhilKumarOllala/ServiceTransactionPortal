@@ -29,7 +29,7 @@ class Login extends Component {
             var name = Response.data.name
             document.cookie="id=" + id + ";" + "max-age=" + (24*60*60) ;
             document.cookie="name=" + name + ";" + "max-age=" + (24*60*60);  */
-            document.cookie="jwt=" + Response.data + ";" + "max-age=" + (24*60*60*1000); 
+            document.cookie=  Response.data ; 
             if (Response.data == '-1') {
                 Swal.fire({
                     title: 'wrongPass!',

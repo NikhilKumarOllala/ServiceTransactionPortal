@@ -7,10 +7,10 @@ export const About = () => {
   return (
     <div >
       <div className="about-section">
-        <h1>About Us Page</h1>
+        <h1 style={{marginTop:'-10px',textDecoration:'underline'}}>About us</h1>
         <p>Service Transaction Portal is launched in the year 2021. It is one of the biggest platforms that collaborate customers and service professionals. This is a small attempt from the engineers of BITS,PILANI to bring out an interface for people and also for a good experience for us</p>
       </div>
-      <h1 style={{ textAlign: 'center' }}>Our Team</h1>
+      <h1 style={{ textAlign: 'center' , color:'black', fontSize:'3rem', textDecoration: 'underline', marginTop:'10px'}}>OUR TEAM</h1>
       <div className="row">
         <div className="column">
           <div className="card">
