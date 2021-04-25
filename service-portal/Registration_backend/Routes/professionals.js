@@ -15,7 +15,9 @@ router.get('/all',async (req,res) => {
 
 
         allProfessional.forEach( (element) => {
+            
             var object = {
+                "pid": element['_id'],
                 "fullName" : element['fullName'],
                 "occupation" : element['occupation'],
                 "phoneNo": element['phoneNo'],

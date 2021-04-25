@@ -11,7 +11,7 @@ import NavigationBarprof from '../dashboard/NavigationBarprof';
 
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './profile.css'
-
+var idFromProps;
 
 var avg = 0;
 var count = 0;
@@ -28,32 +28,47 @@ function getUserID(){
       }
     })
   }
+ 
+  function setProp(p_id){
+    idFromProps = p_id;
+    console.log("function idFromProps " + idFromProps);
+    this.setState({p_id:idFromProps})
+    
+}
 
+class View_feed_prof extends Component{
+    
+        
+        state={
 
-
-class view_feed_prof extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-
-            p_id:"professional_id",//hardcoded here.
+            p_id:"606096414566be0bbc39790c",//hardcoded here.
             feedbacks:[],
             
         }
-        this.show_cards = this.show_cards.bind(this);
         
-    }
+        
+        
+    
     render(){
         avgRating = sessionStorage.getItem('avgRating');
         count = sessionStorage.getItem("count");
         avgRating = avgRating/count;
-        console.log("average rating" + avgRating);
+        //console.log("average rating" + avgRating);
+        idFromProps = this.props.professionalID;
+        //setProp(idFromProps);
+        console.log("ifFromProp " + idFromProps + " pops " + this.props.professionalID)
+        
+        
         return(
             <div className="entire_div_profile">
+                
+                
                 {/* <Dashboard/> */}
                 
                 
                 <div className="side_main_box">
+                                    
+                    
                     <h3>Feedbacks received: {avgRating  }</h3>
                     {this.show_cards()}
                 </div>
@@ -61,24 +76,29 @@ class view_feed_prof extends Component{
         )
     }
     componentDidMount(){
+        
         this.get_feedbacks(this.state.p_id)
+        
+        
     }
     get_feedbacks(p_id){
         getUserID();
         const prof={p_id:p_id};
-        console.log("id is "+p_id);
+        //console.log("id is "+p_id);
         
         axios.post('http://localhost:4000/app/get_feedback_prof',{prof})
         .then(Response=>{
-            console.log(Response);
+            //console.log(Response);
             // j=Response.data;
             this.setState({feedbacks:Response.data})    
         })
         
     }
+    
     show_cards(){
+        
         var j=this.state.feedbacks;
-        console.log("j is "+j.length);
+        //console.log("j is "+j.length);
         if(!(j.length)){            
             return(<div style={{marginLeft:"40%"}}>No Feedbacks yet :(</div>)
         }
@@ -89,16 +109,16 @@ class view_feed_prof extends Component{
     let x=fdb_json['rating'];
     avg = avg + parseInt(x);
     
-    console.log("Avg  " + avg +  " x " + x/(index + 1));
+    //console.log("Avg  " + avg +  " x " + x/(index + 1));
     
     sessionStorage.setItem('avgRating',avg);
     sessionStorage.setItem("count",index + 1);
     //avgRating = avg;
     
-    console.log( " index " + index);
+    //console.log( " index " + index);
     
     let t=fdb_json['review'];
-    console.log("p_rating is "+x+" p_review is "+t);
+    //console.log("p_rating is "+x+" p_review is "+t);
     // return <h3>{x}-{t}</h3>
     for(let i=0;i<x;i++){
         l.push(<BsStarFill></BsStarFill>)
@@ -122,4 +142,4 @@ class view_feed_prof extends Component{
     })
     }
 }
-export default view_feed_prof;
+export default View_feed_prof;

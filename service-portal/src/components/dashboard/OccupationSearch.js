@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./OS.css";
+import StarRating from "../feedback/StarRating";
+import view_feed_prof from "../feedback/View_feed_prof";
 
 function OccupationSearch() {
   const [professionals, setprofessionals] = useState([]);
@@ -66,7 +68,9 @@ function OccupationSearch() {
 }
 
 const ProfessionalDetail = (props) => {
-  const { occupation, fullName, phoneNo, location, email } = props;
+  
+  
+  const {pid,occupation, fullName, phoneNo, location, email } = props;
 
   return (
     <>
@@ -92,7 +96,13 @@ const ProfessionalDetail = (props) => {
                 </Accordion.Toggle>
               </Row>
     <Accordion.Collapse eventKey="1">
-      <Row className="p-2" style={{color:'black'}}>Email: {email}</Row>
+      <Row className="p-2" style={{color:'black'}}>Email: {email}</Row>           
+    </Accordion.Collapse>
+    <Accordion.Collapse eventKey="1">
+      <Row className="p-2" style={{color:'black'}}>{pid}</Row>           
+    </Accordion.Collapse>
+    <Accordion.Collapse eventKey="1">
+      <Row className="p-2" style={{color:'black'}}><view_feed_prof props={pid}/></Row>           
     </Accordion.Collapse>
     </Col>
     </Row>

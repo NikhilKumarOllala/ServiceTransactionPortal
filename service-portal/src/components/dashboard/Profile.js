@@ -4,9 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container,Row,Col,Form ,Button} from 'react-bootstrap';
 import Card from "react-bootstrap/Card";
 import "./Profile.css";
-import Sidebar from './Sidebar';
+
 import axios from "axios";
-import NavigationBar from './NavigationBar';
+import Sidebar from './Sidebar';
+import NavigationBar  from './NavigationBar';
 import { render } from 'react-dom';
 const GridWrapper = styled.div`
   display: grid;
@@ -66,8 +67,9 @@ function getUserID(){
       render() {
         getUserID();
         return (
-          // <NavigationBar/>
-          // <Sidebar/>
+          <div>
+          <NavigationBar/>
+           <Sidebar/>
           <div className = 'profile'> 
           <div className='mt-3'>
             <Card style={{ width: '50rem' },{height: '43rem'}}>
@@ -103,6 +105,7 @@ function getUserID(){
         </Container>
         </Card.Body>
            </Card>
+      </div>
       </div>
       </div>
         )
