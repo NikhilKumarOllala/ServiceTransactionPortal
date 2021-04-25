@@ -24,19 +24,6 @@ margin-left: 6em;
 margin-right: 6em;
 
 `;
-
-// export const Profile = () => (
-
-//   <Hemlo>
-//     <NavigationBar />
-//       <Sidebar />
-//      <h2>USER PROFILE for customer</h2>
-//     <p>Customer profile</p>
-//   </Hemlo>
-
-// )
-
-
 var cID;
 
 const jwt = require('jsonwebtoken')
