@@ -21,6 +21,9 @@ dotenv.config()
 const routes=require('./Routes/api');
 const routes1=require('./Routes/api1');
 const routes2=require('./Routes/api2');
+const routes3=require('./Routes/api3');
+const routes4=require('./Routes/api4');
+const routes5=require('./Routes/api5');
 
 mongoose.connect(process.env.ACCESS_NIKHIL, () => console.log('database connected') )
 
@@ -32,4 +35,7 @@ app.use('/app',routeURL)
 app.use('/api',routes);
 app.use('/api1',routes1);
 app.use('/api2',routes2);
+app.use('/api3',routes3);
+app.use('/api4',routes4);
+app.use('/api5',routes5);
 app.listen(PORT,console.log(`Server open at  ${PORT}`));

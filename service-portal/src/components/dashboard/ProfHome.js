@@ -52,14 +52,14 @@ export class ProfHome extends Component {
       
       
       <div className="Home">
+        
         <NavigationBarprof />
       <Sidebarprof />
-        <header>
           
            <ListItemsProf></ListItemsProf>
           
 
-     </header>
+     
 
       </div>
      
