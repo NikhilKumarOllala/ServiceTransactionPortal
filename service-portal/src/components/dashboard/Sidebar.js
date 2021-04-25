@@ -103,6 +103,17 @@ class SideNav extends React.Component {
 
                         <p>History</p>
 
+                        <NavItem 
+                            path='/Ongoing'
+                            name='Ongoing'
+                            css='fa fa-fw fa-clock'
+                            onItemClick={this.onItemClick}
+                            
+                            
+                        />
+
+                        <p>Ongoing</p>
+
                     </div>
                         
 

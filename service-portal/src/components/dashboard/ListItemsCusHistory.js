@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken')
  
 
   
-var custid;
+var c_id;
 
 function getUserID(){
   var token = document.cookie.split('=')[1];
@@ -17,16 +17,14 @@ function getUserID(){
     if (err) {
         console.log(err);
     } else{
-      custid= decodedToken.id;
+      c_id = decodedToken.id;
      
     }
   })
 }
 
 
-
-
-export class Listitems extends Component {
+export class ListItemsCusHistory extends Component {
 
   
 
@@ -34,6 +32,7 @@ export class Listitems extends Component {
     posts: []
 
   };
+
 
 
   componentDidMount(){
@@ -47,9 +46,9 @@ export class Listitems extends Component {
 
   getBlogPost(){
     
-    console.log("listitems "+custid);
+    console.log("listitems "+c_id);
     
-    axios.get('http://localhost:4000/api/'+custid)
+    axios.get('http://localhost:4000/api2/'+c_id)
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});
@@ -60,16 +59,13 @@ export class Listitems extends Component {
 
     })
     .catch((error)=>{
-      console.log("error is :"+error)
-      console.log("data from mongo didnrt receive listiems");
+      console.log("data from mongo didnrt receive");
 
     })
   }
 
 
-
-
-
+ 
 
 
   render() {
@@ -93,23 +89,27 @@ export class Listitems extends Component {
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
-    
-  
-
-         
-          
-
+   <br></br>
+   <p><b>Job Completed</b></p>
+       
+       
+      
     </div>
 
      )
        
-
+         
+           
+           
          
    
        })
+    
+    
+    
+ 
 
   }
 }
 
-export default Listitems
-
+export default ListItemsCusHistory;

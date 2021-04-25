@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+const Swal=require('sweetalert2');
 
 
 const jwt = require('jsonwebtoken')
@@ -24,8 +25,6 @@ function getUserID(){
 }
 
 
-
-
 export class Listitems extends Component {
 
   
@@ -43,13 +42,13 @@ export class Listitems extends Component {
   
 
   
- 
+
 
   getBlogPost(){
     
     console.log("listitems "+custid);
     
-    axios.get('http://localhost:4000/api/'+custid)
+    axios.post('http://localhost:4000/api1/getongoing',{id:custid})
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});
@@ -66,7 +65,62 @@ export class Listitems extends Component {
     })
   }
 
+  done(id,location1,profession1,body1,profid){
 
+    const payload={
+     
+      c_id: custid,
+      body:body1 ,
+      location:location1,
+      profession:profession1,
+      p_id:profid
+     
+    };
+
+    axios({
+      url:'http://localhost:4000/api/done',
+      method:'POST',
+      data:payload
+
+    }).then(()=>{
+      console.log("data sent to server");
+      Swal.fire({
+        title: 'success',
+        text: "success",
+        icon: 'success',
+        confirmButtonText: 'ok'
+      }).then((result) =>{
+          if (result.isConfirmed) {
+            axios.post('http://localhost:4000/api1/deleteongoing',{postid:id})
+            .then((response)=>{
+      
+              console.log("deleted from ongoing")
+      
+            })
+            .catch((error)=>{
+              console.log("error is :"+error)
+              console.log("data from mongo didnrt receive listiems");
+        
+            })
+
+            window.location.replace('/Ongoing')                         
+          }
+      })
+
+
+    })
+    .catch((error)=>{
+      console.log("error while sending data",error);
+    });
+
+
+    
+
+
+    
+
+
+  }
 
 
 
@@ -96,7 +150,7 @@ export class Listitems extends Component {
     
   
 
-         
+          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id)}>Done</button>
           
 
     </div>

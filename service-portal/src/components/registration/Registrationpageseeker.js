@@ -195,19 +195,32 @@ class Registrationpageseeker extends Component {
 
                 <label for="occupation" className='grey-text'>Occupation :</label>
                 <select name="occupation" id="occupation" className="dropdown" onChange={this.changeOccupation} value={this.state.occupation}>
-                    <option value="carpenter">carpenter</option>
-                    <option value="tutor">tutor</option>
-                    <option value="other">other</option>
+                    <option value="carpenter">Carpenter</option>
+                    <option value="electrician">Electrician</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="painter">Painter</option>
+                    <option value="driver">Driver</option>
+                    <option value="mechanic">Mechanic</option>
+                   
 
                 </select>
                 <br />
                
                 <label for="location" className='grey-text'>Location :</label>
                 <select name="location" id="location" className="dropdown" onChange={this.changeLocation} value={this.state.location}>
-                    <option value="mumbai">mumbai</option>
-                    <option value="hyderabad">hyderabad</option>
-                    <option value="delhi">delhi</option>
-                    <option value="other">other</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="hyderabad">Hyderabad</option>
+                    <option value="kolkata">Kolkata</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="chennai">Chennai</option>
+                    <option value="vizag">Vizag</option>
+                    <option value="banglore">Banglore</option>
+                   
+                    <option value="ahemdabad">Ahmedabad</option>
+                    <option value="lucknow">Lucknow</option>
+                    <option value="guwahati">guwahati</option>
+
+                    
 
                 </select>
                 <br />

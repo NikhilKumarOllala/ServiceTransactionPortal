@@ -12,10 +12,11 @@ const BlogPostSchema= new Schema({
     },
     location:String,
     profession:String,
+
     p_id:String
 
 });
 
-const BlogPost = mongoose.model('PostDBAvailable',BlogPostSchema);
+const BlogPost = mongoose.model('PostDBOngoing',BlogPostSchema);
 
 module.exports =BlogPost;

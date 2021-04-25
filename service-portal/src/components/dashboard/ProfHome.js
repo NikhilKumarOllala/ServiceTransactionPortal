@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import React, { Component } from 'react';
 import './Home.css';
-import ListItems from './Listitems';
+import ListItemsProf from './ListItemsProf';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebarprof from './Sidebarprof';
@@ -24,26 +24,26 @@ export class ProfHome extends Component {
     this.setState({
       role:jwt_decode(document.cookie.split('=')[1]).role
     })
-    this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role); 
+    // this.getBlogPost(jwt_decode(document.cookie.split('=')[1]).role); 
   };
 
-  getBlogPost=(role)=>{
+  // getBlogPost=(role)=>{
     
     
-    axios.get('http://localhost:8000/api1/'+role)
-    .then((response)=>{
-      const data= response.data;
-      console.log(data);
-      this.setState({posts:data});
-      console.log("data from mongo recieved to home")
+  //   axios.get('http://localhost:4000/api1/'+role)
+  //   .then((response)=>{
+  //     const data= response.data;
+  //     console.log(data);
+  //     this.setState({posts:data});
+  //     console.log("data from mongo recieved to home")
 
 
-    })
-    .catch((error)=>{
-      console.log("data from mongo didn't receive");
+  //   })
+  //   .catch((error)=>{
+  //     console.log("data from mongo didnrt receive");
 
-    })
-  }
+  //   })
+  // }
 
   render() {
     console.log('State',this.state);
@@ -52,7 +52,9 @@ export class ProfHome extends Component {
         <NavigationBarprof />
       <Sidebarprof />
         <header>
-          <ListItems items={this.state.posts} ></ListItems>
+          
+           <ListItemsProf></ListItemsProf>
+          
 
      </header>
 
