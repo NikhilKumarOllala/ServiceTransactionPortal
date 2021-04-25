@@ -3,13 +3,14 @@ import React ,{Component} from 'react'
 import { FaStar } from 'react-icons/fa'
 import Swal from 'sweetalert2';
 import './StarRating.css'
-const jwt = require('jsonwebtoken')
+
 var rName,cID,pID = "professional_id" //hardcoded here;
 pID = sessionStorage.getItem('pID');
 var rColour;
 var styling = {
     color:rColour
 }
+const jwt = require('jsonwebtoken')
 function getUserID(){
     var token = document.cookie.split('=')[1];
     jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {

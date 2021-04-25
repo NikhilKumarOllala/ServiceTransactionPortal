@@ -8,8 +8,14 @@ import {BsStar} from 'react-icons/bs'
 import Sidebarprof from '../dashboard/Sidebarprof';
 import NavigationBarprof from '../dashboard/NavigationBarprof';
 
+
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './profile.css'
+
+
+var avg = 0;
+var count = 0;
+var avgRating = 0;
 const jwt = require('jsonwebtoken');
 var pID;
 function getUserID(){
@@ -31,17 +37,24 @@ class view_feed_prof extends Component{
         this.state={
 
             p_id:"professional_id",//hardcoded here.
-            feedbacks:[]
+            feedbacks:[],
+            
         }
+        this.show_cards = this.show_cards.bind(this);
+        
     }
     render(){
+        avgRating = sessionStorage.getItem('avgRating');
+        count = sessionStorage.getItem("count");
+        avgRating = avgRating/count;
+        console.log("average rating" + avgRating);
         return(
             <div className="entire_div_profile">
                 {/* <Dashboard/> */}
                 
                 
                 <div className="side_main_box">
-                    <h3>Feedbacks received:</h3>
+                    <h3>Feedbacks received: {avgRating  }</h3>
                     {this.show_cards()}
                 </div>
             </div>
@@ -69,10 +82,21 @@ class view_feed_prof extends Component{
         if(!(j.length)){            
             return(<div style={{marginLeft:"40%"}}>No Feedbacks yet :(</div>)
         }
+        
         return j.map((fdb_json,index)=>{
                 
             let l=[]
     let x=fdb_json['rating'];
+    avg = avg + parseInt(x);
+    
+    console.log("Avg  " + avg +  " x " + x/(index + 1));
+    
+    sessionStorage.setItem('avgRating',avg);
+    sessionStorage.setItem("count",index + 1);
+    //avgRating = avg;
+    
+    console.log( " index " + index);
+    
     let t=fdb_json['review'];
     console.log("p_rating is "+x+" p_review is "+t);
     // return <h3>{x}-{t}</h3>
