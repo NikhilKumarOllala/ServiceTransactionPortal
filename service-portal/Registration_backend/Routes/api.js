@@ -67,7 +67,7 @@ router.post('/deleteavailable', async(req, res) => {
     var pid=req.body.postid
    BlogPost.deleteOne(  {_id:pid}  )
    .then((data)=>{
-       console.log('Data ongoing',data);
+      // console.log('Data ongoing',data);
        res.status(200).json(data);
    })
    .catch((error)=>{

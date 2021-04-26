@@ -6,7 +6,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Postbar from '../feedback/Postbar';
 import axios from 'axios';
+
+
+
 const jwt = require('jsonwebtoken')
 var token = document.cookie.split('=')[1];
 library.add(faTrash);

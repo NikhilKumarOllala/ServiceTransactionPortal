@@ -58,7 +58,8 @@ export class Ongoing extends Component {
       <div className="Home">
         <NavigationBar />
         <Sidebar />
-        
+        <view_feed_prof props={"hello"}/>
+
           
           <OngoingItems/>
 

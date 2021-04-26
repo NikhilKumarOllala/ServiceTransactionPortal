@@ -14,11 +14,10 @@ const Professional = require('../models/Signup_model');
 })*/
 
 router.get('/:id', async(req, res) => {
-    console.log(req.params.id)
-    
+   
     Professional.find({_id : req.params.id})
     .then((data)=>{
-        console.log('Data ',data);
+        //console.log('Data ',data);
         res.json(data);
     })
     .catch((error)=>{

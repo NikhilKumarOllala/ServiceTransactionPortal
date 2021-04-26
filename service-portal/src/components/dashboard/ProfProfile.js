@@ -7,6 +7,8 @@ import "./ProfProfile.css";
 import Sidebar from './Sidebarprof';
 import axios from "axios";
 import NavigationBar from './NavigationBarprof';
+import View_feed_prof from '../feedback/View_feed_prof';
+import Accordion from "react-bootstrap/Accordion";
 import { render } from 'react-dom';
 const GridWrapper = styled.div`
   display: grid;
@@ -40,6 +42,7 @@ function getUserID(){
     
     export class ProfProfile extends Component {
       state = {
+        vid:'',
         vname:'',
         voccupation:'',
         vlocation:'',
@@ -51,11 +54,12 @@ function getUserID(){
       }
 
      getdetails(){
+      
        axios.get('http://localhost:4000/profileretrieve_prof/'+pID)
     .then((response)=>{
       const data= response.data;
        console.log(data);
-      this.setState({vname:data[0]['fullName'],voccupation:data[0]['occupation'],vlocation:data[0]['location'],vemail:data[0]['email'],vphoneno:data[0]['phoneNo'],vgender:data[0]['gender'],vexperience:data[0]['experience']});
+      this.setState({vid:data[0]['_id'],vname:data[0]['fullName'],voccupation:data[0]['occupation'],vlocation:data[0]['location'],vemail:data[0]['email'],vphoneno:data[0]['phoneNo'],vgender:data[0]['gender'],vexperience:data[0]['experience']});
             console.log(data[0]['fullName']);
       console.log("data from mongo recieved to profile")
     })
@@ -71,11 +75,12 @@ function getUserID(){
       render() {
         getUserID();
         return (
-          // <NavigationBar/>
-          // <Sidebar/>
+          <div>
+           <Sidebar />
+           
           <div className = 'profile'> 
           <div className='mt-3'>
-            <Card style={{ width: '50rem' },{height: '80rem'}}>
+            <Card style={{ width: '50rem' },{height: '50rem'},{marginTop:'30px'}}>
               <Card.Body>
               <Container>
         <Row >
@@ -121,14 +126,42 @@ function getUserID(){
   </Form.Group>
 
   <Button variant="primary" onClick={this.UpdateProfileHandler}>Update Profile</Button>
+  
   </Form>
    </Col>
 
        </Row>
+       
         </Container>
         </Card.Body>
+        
            </Card>
+           <Accordion defaultActiveKey="0">
+      <Row className="m-0">
+        <Col className="">
+              <Row className="px-0" style={{padding:'0px'}}>
+                <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+                    Click to View More
+                </Accordion.Toggle>
+              </Row>
+    <Accordion.Collapse eventKey="1">
+    <Card  style={{color:"black"}}>               
+              <View_feed_prof professionalID = {this.state.vid}/>  
+             
+           
+           </Card>          
+    </Accordion.Collapse>
+   
+    </Col>
+    </Row>
+</Accordion>
+           
+           
+            
       </div>
+      
+      </div>
+      
       </div>
         )
       }

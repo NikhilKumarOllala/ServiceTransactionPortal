@@ -3,13 +3,13 @@ import {Route,Redirect} from 'react-router-dom'
 import dashboard from '../components/dashboard/dummy_dashboard.js'
 import Home from '../components/dashboard/Home.js';
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv').config();
 
 var token = document.cookie.split('=')[1];
 
 
 
-export function ProtectedRouteCustomer({ component:Component ,...rest}) {
+export function ProtectedRouteCustomer({ component:Component ,...rest}) {   
+    
     var auth = false;
     if (token) {
         jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {

@@ -3,6 +3,12 @@ import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+
 
 const Swal=require('sweetalert2');
 const jwt = require('jsonwebtoken')
@@ -199,7 +205,25 @@ getCustDetails(id){
     
 
     <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
-    <button id="show" onClick={()=>this.getCustDetails(item.c_id)}> Customer Details</button>
+    
+    <Accordion defaultActiveKey="0">
+<Row className="m-0">
+<Col className="">
+<Row className="px-0" style={{padding:'0px'}}>
+<Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+Click to View More
+</Accordion.Toggle>
+</Row>
+<Accordion.Collapse eventKey="1">
+<Card style={{color:"black"}}>
+<h3>Name : Vamshi</h3>
+<h3>email : f20190095@hyderabad.bits-pilani.ac.in</h3>
+<h3>phno : 7729903048</h3>
+</Card>
+</Accordion.Collapse>
+</Col>
+</Row>
+</Accordion>
    
 
 
