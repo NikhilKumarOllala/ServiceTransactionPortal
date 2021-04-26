@@ -11,6 +11,7 @@ import View_feed_prof from '../feedback/View_feed_prof';
 import Accordion from "react-bootstrap/Accordion";
 import { render } from 'react-dom';
 
+const Swal = require('sweetalert2')
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -108,7 +109,22 @@ function getUserID(){
       experience: this.state.experience};
 
     axios.post("http://localhost:4000/app/updateProfile_prof/",formData
-       ).catch(err=>console.log(err))
+       ).then((response) => {
+        if(response){
+        Swal.fire({
+          title: 'success',
+          text: "updated",
+          icon: 'success',
+          confirmButtonText: 'ok'
+        }).then((result) =>{
+            if (result.isConfirmed) {
+              window.location.replace("/ProfProfile")                          
+            }
+        }
+        )}
+
+       })
+       .catch(err=>console.log(err))
 }
 
 
