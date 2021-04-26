@@ -171,7 +171,7 @@ export class Home extends Component {
           
           <form onSubmit={this.submit}>
             <div className="form-input">
-            <label htmlFor="profession" className='grey-text'>
+            <label htmlFor="profession" id='black-text'>
                     Profession :
                 </label>
                 &nbsp;&nbsp;
@@ -187,8 +187,8 @@ export class Home extends Component {
                     
                 </select>
 
-                <label htmlFor="city" className='grey-text'>
-                    City:
+                <label htmlFor="city" id='black-text'>
+                    City :
                 </label>
                 &nbsp;&nbsp;
                 <select name="city" id="location" className="dropdown" placeholder='city'>
@@ -223,7 +223,7 @@ export class Home extends Component {
            
          </textarea>
          <br></br>
-         <h>Price(Approx.) : </h>
+         <h id="black-text">Price(Approx) : </h>
          <input id='price'></input>
          
             </div>

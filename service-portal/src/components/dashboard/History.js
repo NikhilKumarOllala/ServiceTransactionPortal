@@ -7,6 +7,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import NavigationBar  from './NavigationBar';
 import axios from 'axios';
+
 const jwt = require('jsonwebtoken')
 var token = document.cookie.split('=')[1];
 library.add(faTrash);
