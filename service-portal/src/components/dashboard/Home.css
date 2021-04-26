@@ -1,5 +1,5 @@
 .Home{
-    background-color: #3f3160;
+    
    
     width:800 px;
     margin: 100px;
@@ -8,6 +8,14 @@
     
 
 }
+
+#black-text{
+
+    color: black;
+    font-size:25px;
+    font-weight: bold;
+}
+
 #to-do-form input{
     background-color: rgb(27,112,137);
     border:0;

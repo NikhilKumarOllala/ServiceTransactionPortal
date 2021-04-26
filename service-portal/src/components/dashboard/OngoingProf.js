@@ -8,6 +8,7 @@ import Sidebarprof from './Sidebarprof';
 import NavigationBarprof from './NavigationBarprof';
 import axios from 'axios';
 import OngoingProfListItem from './OngoingProfListItem';
+import {Card} from 'react-bootstrap'
 
 const Swal = require('sweetalert2')
 const jwt = require('jsonwebtoken')
