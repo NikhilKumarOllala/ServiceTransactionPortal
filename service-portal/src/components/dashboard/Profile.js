@@ -40,11 +40,21 @@ function getUserID(){
   }
     
     export class Profile extends Component {
-      state = {
-        name:'',
-        email:'',
-        phoneno:''
+      constructor(props) {
+        super(props);
+        this.state = {name: '',email:'',phoneno:''};
+    
+        this.handleChangename = this.handleChangename.bind(this);
+        this.handleChangeemail = this.handleChangeemail.bind(this);
+        this.handleChangephoneno = this.handleChangephoneno.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
       }
+
+      // state = {
+      //   name:'',
+      //   email:'',
+      //   phoneno:''
+      // }
 
      getdetails(){
        axios.get('http://localhost:4000/profileretrieve/'+cID)
@@ -60,6 +70,35 @@ function getUserID(){
 
     })
   }
+
+  
+
+  handleChangeemail(event) {
+    this.setState({email: event.target.value});
+  }
+
+  handleChangename(event) {
+    this.setState({name: event.target.value});
+  }
+
+  handleChangephoneno(event) {
+    this.setState({phoneno: event.target.value});
+  }
+
+  UpdateProfileHandler=(e)=>{
+    e.preventDefault();
+    
+    //create object of form data
+    const formData = {id: cID,
+      name: this.state.name,
+      email: this.state.email,
+      phoneno: this.state.phoneno};
+
+    axios.post("http://localhost:4000/app/updateProfile/",formData
+       ).catch(err=>console.log(err))
+}
+
+
   componentDidMount(){
     this.getdetails();
   }
@@ -77,24 +116,24 @@ function getUserID(){
           <Container>
         <Row >
         <Col>
-            <h1 style={{color:'black' , fontSize:'3rem',marginRight:'130px',marginBottom:'0px'}}>USER PROFILE</h1>
+            <h1 style={{color:'black' , fontSize:'3rem',marginRight:'30px',marginBottom:'0px',textDecoration:'underline'}}>USER PROFILE</h1>
             <Form className="form" style={{color:'black'}}>  
-            <Card.Img variant="top" className="im" style={{marginRight:'-40px'}}src="https://us.123rf.com/450wm/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg?ver=6"/>
+            <Card.Img variant="top" className="im" style={{marginRight:'-50px', marginTop:'30px',height:'100px',width:'100px',marginBottom:'30px'}}src="https://us.123rf.com/450wm/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg?ver=6"/>
 
             {/* <p> {this.state.msg}</p>    */}
   <Form.Group controlId="formCategory1">
     <Form.Label className = "labels" style={{color:'black', fontSize:'1rem',marginBottom:'-300px'}}>Username</Form.Label>
-    <Form.Control type="text" style={{color:'black'}} defaultValue={this.state.name}/>
+    <Form.Control type="text" style={{color:'black'}} defaultValue={this.state.name} onChange={this.handleChangename}/>
   </Form.Group>
 
   <Form.Group controlId="formCategory2">
     <Form.Label style={{color:'black', fontSize:'1rem'}}>Email</Form.Label>
-    <Form.Control type="email" style={{color:'black'}} defaultValue={this.state.email} />
+    <Form.Control type="email" style={{color:'black'}} defaultValue={this.state.email} onChange={this.handleChangeemail}/>
   </Form.Group>
 
   <Form.Group controlId="formCategory2">
     <Form.Label style={{color:'black', fontSize:'1rem'}}>Phone No</Form.Label>
-    <Form.Control type="phone" style={{color:'black'}} defaultValue={this.state.phoneno} />
+    <Form.Control type="phone" style={{color:'black'}} defaultValue={this.state.phoneno} onChange={this.handleChangephoneno} />
   </Form.Group>
 
   <Button variant="primary" onClick={this.UpdateProfileHandler}>Update Profile</Button>

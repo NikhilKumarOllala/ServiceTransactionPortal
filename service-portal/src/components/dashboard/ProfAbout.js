@@ -6,7 +6,8 @@ import './About.css'
 export const ProfAbout = () => {
   return (
     <div >
-      <NavigationBarprof />
+      <NavigationBarprof/>
+      <Sidebarprof/>
       <div className="about-section">
         <h1>About Us Page</h1>
         <p>Service Transaction Portal is launched in the year 2021. It is one of the biggest platforms that collaborate customers and service professionals. This is a small attempt from the engineers of BITS,PILANI to bring out an interface for people and also for a good experience for us</p>

@@ -1,4 +1,3 @@
-
 const express = require('express')
 const router = express.Router()
 const signupTemplatecopy = require('../models/Signup_model')
@@ -18,17 +17,17 @@ const Professional = require('../models/Signup_model');
     res.send('got the cookies')
 })*/
 router.get('/signupProfessional',async (req,res) => {
-    
+
     let loginemail = req.query.loginEmail.toString()
     let  loginpassword=req.query.loginPassword.toString()
-    
+
 
     signupTemplatecopy.findOne({
         'email': loginemail
     }
     ).exec((err,user) =>{
         if (err) {
-            console.log('error getting users');            
+            console.log('error getting users');
         }else{
             if (!user) {
                 console.log("user dosent exist!!");
@@ -36,35 +35,35 @@ router.get('/signupProfessional',async (req,res) => {
             }else(bcrypt.compare(loginpassword,user.password,(error,response) => {
                 if (error) {
                     console.log(error);
-                    
+
                 }else{
                     if (response) {
                         console.log('login successfull');
                         var id = user._id
-                        var type = "professional"                     
+                        var type = "professional"
                         var a={
                             id : id,
                             type : "professional"
-                        }        
-                        var token = jwt.sign({id:id,type:"professional",role:user.occupation},process.env.JWT,{expiresIn:24*60*60})             
-                        res.send(token);                       
-                        
+                        }
+                        var token = jwt.sign({id:id,type:"professional",role:user.occupation},process.env.JWT,{expiresIn:24*60*60})
+                        res.send(token);
+
                     }else{
-                        
+
                         console.log("wrong password!!");
                         res.send('-1')
-                        
-                        
+
+
                     }
-                
-            }})) 
-            
-            
-            
+
+            }}))
+
+
+
         }
     })
-  
-    
+
+
 })
 
 // router.get('/customers',function(req,res){
@@ -94,6 +93,48 @@ router.get('/signupProfessional',async (req,res) => {
 // });
 
 
+
+router.post('/updateProfile', function(req, res, next){
+    Customer.findById(req.body.id, function (err, user) {
+        var email = req.body.email;
+        var phoneno = req.body.phoneno;
+        var name = req.body.name;
+        console.log(req);
+
+        user.email = email;
+        user.phoneNo = phoneno;
+        user.fullName = name; 
+        
+
+        // don't forget to save!
+        user.save();
+    });
+});
+
+router.post('/updateProfile_prof', function(req, res, next){
+    Professional.findById(req.body.id, function (err, user) {
+        var email = req.body.email;
+        var phoneno = req.body.phoneno;
+        var name = req.body.name;
+        var location = req.body.location;
+        var occupation = req.body.occupation;
+        var experience = req.body.experience;
+
+        console.log(req);
+
+        user.email = email;
+        user.phoneNo = phoneno;
+        user.fullName = name; 
+        user.location = location;
+        user.occupation = occupation;
+        user.experience = experience;
+        
+
+        // don't forget to save!
+        user.save();
+    });
+});
+
 router.get('/signupCustomer',async (req,res) => {
     console.log(req.query.loginEmail);
     let loginemail = req.query.loginEmail.toString()
@@ -111,12 +152,12 @@ router.get('/signupCustomer',async (req,res) => {
             }else(bcrypt.compare(loginpassword,user.password,(error,response) => {
                 if (error) {
                     console.log(error);
-                    
+
                 }else{
                     if (response) {
                         console.log('login successfull');
                         var id = user._id
-                        var type = "customer"                      
+                        var type = "customer"
                         var a={
                             id : id,
                             type : "customer",
@@ -132,16 +173,16 @@ router.get('/signupCustomer',async (req,res) => {
                         console.log('wrong password!!');
                         res.send('-1')
                     }
-                
-            }})) 
-            
-            
-            
+
+            }}))
+
+
+
         }
     })
 
-    
-    
+
+
 })
 
 router.post('/signupProfessional',async (request,response) => {
@@ -165,9 +206,9 @@ router.post('/signupProfessional',async (request,response) => {
        // response.send('ok')
     })
     .catch(error => {
-        
+
         return response.status(404).json(error)
-        
+
     })
 })
 router.post('/signupCustomer',async (request,response) => {
@@ -180,9 +221,9 @@ router.post('/signupCustomer',async (request,response) => {
         email:request.body.email,
         phoneNo:request.body.phoneNo,
         gender:request.body.gender,
-        
+
         password:securedPassword
-        
+
     })
     signedupUser.save()
     .then(data => {
@@ -191,7 +232,7 @@ router.post('/signupCustomer',async (request,response) => {
     })
     .catch(error => {
         return response.status(404).json(error)
-        
+
     })
 })
 
@@ -269,6 +310,7 @@ router.post('/givenFeedback',(req,res) => {
         }
     })
 })
+
 
 
 module.exports = router;
