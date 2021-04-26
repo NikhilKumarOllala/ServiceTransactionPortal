@@ -17,10 +17,12 @@ const jwt = require('jsonwebtoken')
   
 var profession;
 var pid;
+var location;
 
 function getUserrole(){
   profession=jwt_decode(document.cookie.split('=')[1]).role;
   pid=jwt_decode(document.cookie.split('=')[1]).id;
+  location=jwt_decode(document.cookie.split('=')[1]).place;
 
 
 }
@@ -48,7 +50,7 @@ export class ListItemsProf extends Component {
   
 getCustDetails(id){
   console.log("get cust details :" + id);
-  axios.get('http://localhost:4000/api3/'+id)
+  axios.get('http://localhost:4000/api3/'+id,{place : location})
   .then((response)=>{
     const data= response.data;
    
@@ -71,8 +73,9 @@ getCustDetails(id){
   getBlogPost(){
     
     console.log("listitems "+profession);
+    console.log("listitems "+location);
     
-    axios.get('http://localhost:4000/api1/'+profession)
+    axios.post('http://localhost:4000/api1/getprofdata',{place :location, role:profession })
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});

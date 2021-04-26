@@ -10,8 +10,11 @@ const BlogPostOngoing= require('../models/blogPostOngoing');
 
 
 
-router.get('/:profession', async(req, res) => {
-    console.log(req.params.profession)
+router.post('/getprofdata', async(req, res) => {
+    console.log(req.body.role)
+    var location1=req.body.place;
+    var profession1=req.body.role;
+    console.log(req.body);
     
 //    BlogPost.aggregate([
 //         {
@@ -35,7 +38,8 @@ router.get('/:profession', async(req, res) => {
 //     })
 
 
-    BlogPost.find(   { profession: req.params.profession } )
+
+    BlogPost.find({ $and: [ {profession: profession1 }, { location :location1 }   ] } )
     .then((data)=>{
         console.log('Data ',data);
         res.status(200).json(data);
