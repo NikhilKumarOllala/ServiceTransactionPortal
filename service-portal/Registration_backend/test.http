@@ -1,4 +1,4 @@
-POST  http://localhost:8000/api/save
+POST  http://localhost:4000/app/signupCustomer
 Content-Type: application/json
 
 
@@ -6,12 +6,11 @@ Content-Type: application/json
  
 {
 
-    "date":"1619284246893",
-     "c_id":"60819fcdcad67e6c60745e10",
-     "body":"hello",
-     "location":"Hyderabad",
-     "profession":"carpenter",
-     "status":"Available",
+  "fullName": "Eilis",
+  "email": "emaccrann3@ameblo.jp",
+  "phoneNo": "866-800-9593",
+  "gender": "Male",
+  "password": "123"
 }
  
 
