@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./OS.css";
 import StarRating from "../feedback/StarRating";
-import view_feed_prof from "../feedback/View_feed_prof";
+import View_feed_prof_search from "../feedback/View_feed_prof_search";
 
 function OccupationSearch() {
   const [professionals, setprofessionals] = useState([]);
@@ -97,12 +97,9 @@ const ProfessionalDetail = (props) => {
               </Row>
     <Accordion.Collapse eventKey="1">
       <Row className="p-2" style={{color:'black'}}>Email: {email}</Row>           
-    </Accordion.Collapse>
-    <Accordion.Collapse eventKey="1">
-      <Row className="p-2" style={{color:'black'}}>{pid}</Row>           
-    </Accordion.Collapse>
-    <Accordion.Collapse eventKey="1">
-      <Row className="p-2" style={{color:'black'}}><view_feed_prof props={pid}/></Row>           
+    </Accordion.Collapse>    
+    <Accordion.Collapse eventKey="1">      
+      <Row className="p-2" style={{color:'black',display:'contents'}}><View_feed_prof_search professionalID={pid} /></Row>           
     </Accordion.Collapse>
     </Col>
     </Row>

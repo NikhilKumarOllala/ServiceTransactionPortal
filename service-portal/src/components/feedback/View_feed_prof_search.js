@@ -17,18 +17,8 @@ var avg = 0;
 var count = 0;
 var avgRating = 0;
 const jwt = require('jsonwebtoken');
-var pID;
-function getUserID(){
-    var token = document.cookie.split('=')[1];
-    jwt.verify(token,"thisisakeyforthejwtandisaccessedatthebackendonly",(err,decodedToken) => {
-      if (err) {
-          console.log(err);
-      } else{
-        pID = decodedToken.id;
-      }
-    })
 
-  }
+
  
   
 class View_feed_prof extends Component{
@@ -36,58 +26,57 @@ class View_feed_prof extends Component{
             super(props)
         
             this.state = {
-                p_id:pID,//hardcoded here.
+                p_id:"60819ffdcad67e6c60745e11",//hardcoded here.
                 feedbacks:[],
             }
             
+           
         }
         
-       
-        
-       
+   getCom(id) {
+
+    // This would work now
+   idFromProps = id;
+   
+
+ 
+   }  
+    
+    
             
     
     render(){
-        getUserID();
+        
+        const p = this.props.professionalID;
         avgRating = sessionStorage.getItem('avgRating');
         count = sessionStorage.getItem("count");
         avgRating = avgRating/count;
+        avgRating = Math.round(avgRating * 10)/10;
+        
         //console.log("average rating" + avgRating);
         //console.log("ifFromProp " + idFromProps + " pops " + this.props.professionalID)
-        
-        
         return(
             <div className="entire_div_profile">
-                
-                
                 {/* <Dashboard/> */}
-                
-                
                 <div className="side_main_box">
-                    <h3>id from props : {this.props.professionalID}</h3>   
-                    <h3>id from state : {this.state.p_id}</h3>      
-                               
+                     
+                    {this.getCom(this.props.professionalID)}
                     
                     <h3>Feedbacks received: </h3>
                     {this.show_cards()}
+                    {this.get_feedbacks(this.props.professionalID)}
                 </div>
             </div>
         )
     }
     componentDidMount(){
         
-        this.get_feedbacks(pID);
-        
-        
-
-        
-        
+        //this.get_feedbacks(this.state.p_id);
     }
     get_feedbacks(p_id){
         
         const prof={p_id:p_id};
-        //console.log("id is "+p_id);
-        
+        //console.log("id is "+p_id);        
         axios.post('http://localhost:4000/app/get_feedback_prof',{prof})
         .then(Response=>{
             //console.log(Response);

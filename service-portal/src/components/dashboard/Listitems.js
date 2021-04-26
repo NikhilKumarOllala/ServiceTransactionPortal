@@ -47,7 +47,7 @@ export class Listitems extends Component {
 
   getBlogPost(){
     
-    console.log("listitems "+custid);
+    //console.log("listitems "+custid);
     
     axios.get('http://localhost:4000/api/'+custid)
     .then((response)=>{
@@ -77,7 +77,7 @@ export class Listitems extends Component {
     
     const items=this.state.posts;
 
-    console.log("lisitmes");
+    //console.log("lisitmes");
     
     
     

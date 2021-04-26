@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-d
 
 const StyledSideNav = styled.div`   
     position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
-    left:5px;
+    left:0px;
     top:78px;
     height: 100%;
     width: 75px;     /* Set the width of the sidebar */
@@ -77,7 +77,7 @@ class SideNav extends React.Component {
                         <NavItem 
                             path='/OngoingProf'
                             name='OngoingProf'
-                            css='fa fa-fw fa-home'
+                            css='fa fa-fw fa-clock'
                             onItemClick={this.onItemClick}
                             
                             

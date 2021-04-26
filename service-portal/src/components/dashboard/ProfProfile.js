@@ -6,10 +6,11 @@ import Card from "react-bootstrap/Card";
 import "./ProfProfile.css";
 import Sidebar from './Sidebarprof';
 import axios from "axios";
-import NavigationBar from './NavigationBarprof';
+import NavigationBar, { NavigationBarprof } from './NavigationBarprof';
 import View_feed_prof from '../feedback/View_feed_prof';
 import Accordion from "react-bootstrap/Accordion";
 import { render } from 'react-dom';
+import Sidebarprof from './Sidebarprof';
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -76,7 +77,8 @@ function getUserID(){
         getUserID();
         return (
           <div>
-           <Sidebar />
+          <NavigationBarprof />
+          <Sidebarprof />
            
           <div className = 'profile'> 
           <div className='mt-3'>
@@ -141,7 +143,7 @@ function getUserID(){
         <Col className="">
               <Row className="px-0" style={{padding:'0px'}}>
                 <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
-                    Click to View More
+                    Click to View Feedbacks
                 </Accordion.Toggle>
               </Row>
     <Accordion.Collapse eventKey="1">
