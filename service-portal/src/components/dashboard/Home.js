@@ -56,12 +56,20 @@ export class Home extends Component {
     profession:'',
     posts: [],
     status:'',
-    pid:''
+    pid:'',
+    price:'',
+    name:'',
+    email:'',
+    phoneNo:''
   };
   
   componentDidMount=()=>{
     this.setState({
-      c_id:jwt_decode(document.cookie.split('=')[1]).id
+      c_id:jwt_decode(document.cookie.split('=')[1]).id,
+      name:jwt_decode(document.cookie.split('=')[1]).name,
+      email:jwt_decode(document.cookie.split('=')[1]).email,
+      phoneNo:jwt_decode(document.cookie.split('=')[1]).phNo
+
     })
     
     
@@ -92,6 +100,10 @@ export class Home extends Component {
       body: document.getElementById('body').value,
       location:document.getElementById('location').value,
       profession:document.getElementById('profession').value,
+      price:document.getElementById('price').value,
+      phoneNo:this.state.phoneNo,
+    email:this.state.email,
+    name:this.state.name
      
     };
 
@@ -159,7 +171,7 @@ export class Home extends Component {
           
           <form onSubmit={this.submit}>
             <div className="form-input">
-            <label htmlFor="profession" className='grey-text'>
+            <label htmlFor="profession" id='black-text'>
                     Profession :
                 </label>
                 &nbsp;&nbsp;
@@ -175,8 +187,8 @@ export class Home extends Component {
                     
                 </select>
 
-                <label htmlFor="city" className='grey-text'>
-                    City:
+                <label htmlFor="city" id='black-text'>
+                    City :
                 </label>
                 &nbsp;&nbsp;
                 <select name="city" id="location" className="dropdown" placeholder='city'>
@@ -210,8 +222,12 @@ export class Home extends Component {
          >
            
          </textarea>
+         <br></br>
+         <h id="black-text">Price(Approx) : </h>
+         <input id='price'></input>
          
             </div>
+            <br></br>
            
             <button type="submit" >Add Post</button>
             

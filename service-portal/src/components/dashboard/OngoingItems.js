@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './Listitem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import {Card} from 'react-bootstrap'
 const Swal=require('sweetalert2');
+
 
 
 const jwt = require('jsonwebtoken')
@@ -65,7 +67,7 @@ export class Listitems extends Component {
     })
   }
 
-  done(id,location1,profession1,body1,profid){
+  done(id,location1,profession1,body1,profid,name1,email1,phoneNo1){
 
     const payload={
      
@@ -73,7 +75,10 @@ export class Listitems extends Component {
       body:body1 ,
       location:location1,
       profession:profession1,
-      p_id:profid
+      p_id:profid,
+      name:name1,
+      email:email1,
+      phoneNo:phoneNo1
      
     };
 
@@ -143,17 +148,20 @@ export class Listitems extends Component {
      
 
      return(
-      <div className="list" key={index}>
-      <br></br>
-      <h3>City : {item.location}   Profession : {item.profession}</h3>
+      <Card style={{marginTop:"2%",border:"2px solid",boxShadow:"0px 14px 20px rgba(34, 35, 58, 0.2)",marginLeft:"10%",marginRight:"10%" ,color:'black',padding:"10px"}}>
+      <div  key={index}>
+      <h3>City : {(item.location).charAt(0).toUpperCase() + (item.location).slice(1)}  </h3> 
+      
+      <h3>Profession : {(item.profession).charAt(0).toUpperCase()+(item.profession).slice(1)}</h3>
     <p>Description : {item.body}</p>
     
   
 
-          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id)}>Done</button>
+          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id,item.name,item.email,item.phoneNo)}>Done</button>
           
 
     </div>
+    </Card>
 
      )
        

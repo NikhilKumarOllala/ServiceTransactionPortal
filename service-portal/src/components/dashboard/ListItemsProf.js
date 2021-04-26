@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Listitem.css';
+import './Listitem.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
@@ -18,10 +18,12 @@ const jwt = require('jsonwebtoken')
   
 var profession;
 var pid;
+var location;
 
 function getUserrole(){
   profession=jwt_decode(document.cookie.split('=')[1]).role;
   pid=jwt_decode(document.cookie.split('=')[1]).id;
+  location=jwt_decode(document.cookie.split('=')[1]).place;
 
 
 }
@@ -49,7 +51,7 @@ export class ListItemsProf extends Component {
   
 getCustDetails(id){
   console.log("get cust details :" + id);
-  axios.get('http://localhost:4000/api3/'+id)
+  axios.get('http://localhost:4000/api3/'+id,{place : location})
   .then((response)=>{
     const data= response.data;
    
@@ -72,8 +74,9 @@ getCustDetails(id){
   getBlogPost(){
     
     console.log("listitems "+profession);
+    console.log("listitems "+location);
     
-    axios.get('http://localhost:4000/api1/'+profession)
+    axios.post('http://localhost:4000/api1/getprofdata',{place :location, role:profession })
     .then((response)=>{
       const data= response.data;
       this.setState({posts:data});
@@ -119,7 +122,7 @@ getCustDetails(id){
     
     
   // }
-  take(id,location1,profession1,body1,custid){
+  take(id,location1,profession1,body1,custid,name1,email1,phoneNo1){
     
    
     const payload={
@@ -128,7 +131,12 @@ getCustDetails(id){
       body:body1 ,
       location:location1,
       profession:profession1,
-      p_id:pid
+      p_id:pid,
+      name:name1,
+      email:email1,
+      phoneNo:phoneNo1
+
+
      
     };
 
@@ -192,42 +200,54 @@ getCustDetails(id){
      
 
      return(
-      <div className="list" key={index}>
-      <br></br>
-      <h3>City : {item.location}   Profession : {item.profession}</h3>
+      <Card style={{marginTop:"2%",border:"2px solid",boxShadow:"0px 14px 20px rgba(34, 35, 58, 0.2)",marginLeft:"10%",marginRight:"10%" ,color:'black',padding:"10px"}}>
+      <div  key={index}>
+      <h3>City : {(item.location).charAt(0).toUpperCase() + (item.location).slice(1)}  </h3> 
+      
+      <h3>Profession : {(item.profession).charAt(0).toUpperCase()+(item.profession).slice(1)}</h3>
     <p>Description : {item.body}</p>
+    <br></br>
+    <p>Price(Approx) in rupees : {item.price}</p>
+   
 
-    
     
    
    
+   
     
     
 
-    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
-    
+    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id,item.name,item.email,item.phoneNo)}>Take this job</button>
+   
     <Accordion defaultActiveKey="0">
-<Row className="m-0">
-<Col className="">
-<Row className="px-0" style={{padding:'0px'}}>
-<Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
-Click to View More
-</Accordion.Toggle>
-</Row>
-<Accordion.Collapse eventKey="1">
-<Card style={{color:"black"}}>
-<h3>Name : Vamshi</h3>
-<h3>email : f20190095@hyderabad.bits-pilani.ac.in</h3>
-<h3>phno : 7729903048</h3>
-</Card>
-</Accordion.Collapse>
-</Col>
-</Row>
+      <Row className="m-0">
+        <Col className="">
+              <Row className="px-0" style={{padding:'0px'}}>
+                <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+                    Click to View More
+                </Accordion.Toggle>
+              </Row>
+    <Accordion.Collapse eventKey="1">
+    <Card style={{color:"black"}}>               
+              <h5>Name : {item.name}</h5>
+              <h5>Email : {item.email}</h5>
+              <h5>Contact Number : {item.phoneNo}</h5>
+           
+           </Card>          
+    </Accordion.Collapse>
+   
+    </Col>
+    </Row>
 </Accordion>
+
+    
+
+ 
    
 
 
     </div>
+    </Card>
 
      )
        
