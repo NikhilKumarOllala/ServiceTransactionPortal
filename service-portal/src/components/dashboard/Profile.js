@@ -59,6 +59,27 @@ function getUserID(){
 
     })
   }
+
+  UpdateProfileHandler=(e)=>{
+    e.preventDefault();
+    //create object of form data
+    const formData=new FormData();
+    formData.append("cID",this.state.cID);
+
+    //update-profile
+    axios.post('http://localhost:4000/update-profile/',formData,{
+        headers: {
+            "content-type": "application/json"
+          }
+    }).then(res=>{
+        console.log(res);
+       this.setState({msg:res.data.message});
+       this.setState({email:res.data.results.email});
+    })
+    .catch(err=>console.log(err))
+}
+
+
   componentDidMount(){
     this.getdetails();
   }
