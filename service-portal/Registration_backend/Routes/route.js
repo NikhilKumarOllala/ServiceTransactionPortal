@@ -86,9 +86,14 @@ router.get('/signupCustomer',async (req,res) => {
                         var type = "customer"                      
                         var a={
                             id : id,
-                            type : "customer"
+                            type : "customer",
+                            name : user.fullName,
+                            phNo :user.phoneNo,
+                            email: user.email
                         }        
-                        var token = jwt.sign({id:id,type:"customer"},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
+                        var token = jwt.sign({id:id,type:"customer",name : user.fullName,
+                        phNo :user.phoneNo,
+                        email: user.email},process.env.PRIVATE_KEY_JWT,{expiresIn:24*60*60})             
                         res.send(token); 
                     }else{
                         console.log('wrong password!!');

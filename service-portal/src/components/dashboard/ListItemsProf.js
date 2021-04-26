@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import './Listitem.css';
+import './ListItemProf.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 const Swal=require('sweetalert2');
 const jwt = require('jsonwebtoken')
@@ -113,7 +118,7 @@ getCustDetails(id){
     
     
   // }
-  take(id,location1,profession1,body1,custid){
+  take(id,location1,profession1,body1,custid,name1,email1,phoneNo1){
     
    
     const payload={
@@ -122,7 +127,12 @@ getCustDetails(id){
       body:body1 ,
       location:location1,
       profession:profession1,
-      p_id:pid
+      p_id:pid,
+      name:name1,
+      email:email1,
+      phoneNo:phoneNo1
+
+
      
     };
 
@@ -190,16 +200,43 @@ getCustDetails(id){
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
+    <br></br>
+    <p>Price(Approx) in rupees : {item.price}</p>
+   
 
-    
     
    
    
+   
     
     
 
-    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id)}>Take this job</button>
-    <button id="show" onClick={()=>this.getCustDetails(item.c_id)}> Customer Details</button>
+    <button id="take" onClick={()=>this.take(item._id,item.location,item.profession,item.body,item.c_id,item.name,item.email,item.phoneNo)}>Take this job</button>
+   
+    <Accordion defaultActiveKey="0">
+      <Row className="m-0">
+        <Col className="">
+              <Row className="px-0" style={{padding:'0px'}}>
+                <Accordion.Toggle as={Button} className="px-0" variant="link" eventKey="1">
+                    Click to View More
+                </Accordion.Toggle>
+              </Row>
+    <Accordion.Collapse eventKey="1">
+    <Card style={{color:"black"}}>               
+              <h5>Name : {item.name}</h5>
+              <h5>Email : {item.email}</h5>
+              <h5>Contact Number : {item.phoneNo}</h5>
+           
+           </Card>          
+    </Accordion.Collapse>
+   
+    </Col>
+    </Row>
+</Accordion>
+
+    
+
+ 
    
 
 

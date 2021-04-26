@@ -8,9 +8,33 @@ const BlogPostOngoing= require('../models/blogPostOngoing');
 
 
 
+
+
 router.get('/:profession', async(req, res) => {
     console.log(req.params.profession)
     
+//    BlogPost.aggregate([
+//         {
+//             // $lookup:
+//             //   {
+//             //     from: 'customers',
+//             //     localField: 'c_id',
+//             //     foreignField:'_id',
+//             //     as: 'c_id'
+//             //   },
+//                $match: { 'profession': req.params.profession  } 
+//          }
+//     ]).exec((err,result) => {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             if (result) {
+//                 return  res.status(200).json(result);
+//             }
+//         }
+//     })
+
+
     BlogPost.find(   { profession: req.params.profession } )
     .then((data)=>{
         console.log('Data ',data);

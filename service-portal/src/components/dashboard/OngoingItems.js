@@ -65,7 +65,7 @@ export class Listitems extends Component {
     })
   }
 
-  done(id,location1,profession1,body1,profid){
+  done(id,location1,profession1,body1,profid,name1,email1,phoneNo1){
 
     const payload={
      
@@ -73,7 +73,10 @@ export class Listitems extends Component {
       body:body1 ,
       location:location1,
       profession:profession1,
-      p_id:profid
+      p_id:profid,
+      name:name1,
+      email:email1,
+      phoneNo:phoneNo1
      
     };
 
@@ -150,7 +153,7 @@ export class Listitems extends Component {
     
   
 
-          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id)}>Done</button>
+          <button id="done"  onClick={()=>this.done(item._id,item.location,item.profession,item.body,item.p_id,item.name,item.email,item.phoneNo)}>Done</button>
           
 
     </div>

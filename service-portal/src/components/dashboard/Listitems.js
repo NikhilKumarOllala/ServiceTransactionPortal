@@ -93,6 +93,9 @@ export class Listitems extends Component {
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
+    <br></br>
+    <p>Price(Approx.) in rupees: {item.price}</p>
+   
     
   
 

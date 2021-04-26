@@ -12,7 +12,11 @@ const BlogPostSchema= new Schema({
     },
     location:String,
     profession:String,
-    p_id:String
+    p_id:String,
+    price:String,
+    phoneNo:String,
+    email:String,
+    name:String
 
 });
 

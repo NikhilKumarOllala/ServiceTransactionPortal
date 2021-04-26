@@ -91,6 +91,10 @@ export class OngoingProfListitem extends Component {
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
+
+    <h5>Customer Name : {item.name}</h5>
+    <h5>Customer Contact Number : {item.phoneNo}</h5>
+    <h5>Customer Email : {item.email}</h5>
     
   
 
