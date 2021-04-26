@@ -18,8 +18,8 @@ router.get('/:id', async(req, res) => {
     
     Customer.find({_id : req.params.id})
     .then((data)=>{
-        console.log("profretrive data " + data);
-        console.log('Data ',data);
+       // console.log("profretrive data " + data);
+       // console.log('Data ',data);
         res.json(data);
     })
     .catch((error)=>{

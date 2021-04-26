@@ -13,7 +13,7 @@ router.get('/:id', async(req, res) => {
     
     BlogPostDone.find( { c_id : req.params.id } )
     .then((data)=>{
-        console.log('Data ',data);
+        //console.log('Data ',data);
         res.status(200).json(data);
     })
     .catch((error)=>{

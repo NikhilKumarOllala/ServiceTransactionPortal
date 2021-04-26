@@ -4,8 +4,8 @@ import { FaStar } from 'react-icons/fa'
 import Swal from 'sweetalert2';
 import './StarRating.css'
 
-var rName,cID,pID = "606096414566be0bbc39790c" //hardcoded here;
-pID = sessionStorage.getItem('pID');
+var rName,cID,pID; //hardcoded here;
+pID = sessionStorage.getItem('giveFeedback');
 var rColour;
 var styling = {
     color:rColour
@@ -86,7 +86,7 @@ class  StarRating extends Component {
             if (Response.status === 200) {
                 Swal.fire({
                     title: 'success',
-                    text: "prof feedback registered!",
+                    text: "feedback registered!",
                     icon: 'success',
                     confirmButtonText: 'ok'
                   }).then((result) =>{

@@ -86,7 +86,7 @@ const ProfessionalDetail = (props) => {
                 <Card.Subtitle className="mb-2 text-muted" style={{color: 'black'}}>
                 Contact: {phoneNo} 
                 </Card.Subtitle>
-                <Card.Img variant="bottom" className="im" src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/worker.png"/>
+                
         <Accordion defaultActiveKey="0">
       <Row className="m-0">
         <Col className="">

@@ -146,7 +146,8 @@ function getUserID(){
               </Row>
     <Accordion.Collapse eventKey="1">
     <Card  style={{color:"black"}}>               
-              <View_feed_prof professionalID = {this.state.pid}/>  
+              <View_feed_prof professionalID = {this.state.vid}/>  
+             
            
            </Card>          
     </Accordion.Collapse>

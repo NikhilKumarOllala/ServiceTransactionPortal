@@ -13,7 +13,7 @@ router.get('/:profession', async(req, res) => {
     
     BlogPost.find(   { profession: req.params.profession } )
     .then((data)=>{
-        console.log('Data ',data);
+        //console.log('Data ',data);
         res.status(200).json(data);
     })
     .catch((error)=>{
@@ -27,7 +27,7 @@ router.post('/getongoing', async(req, res) => {
      var cid=req.body.id
     BlogPostOngoing.find(  {c_id:cid}  )
     .then((data)=>{
-        console.log('Data ongoing',data);
+        //console.log('Data ongoing',data);
         res.status(200).json(data);
     })
     .catch((error)=>{
@@ -41,7 +41,7 @@ router.post('/deleteongoing', async(req, res) => {
     var pid=req.body.postid
    BlogPostOngoing.deleteOne(  {_id:pid}  )
    .then((data)=>{
-       console.log('Data ongoing',data);
+      // console.log('Data ongoing',data);
        res.status(200).json(data);
    })
    .catch((error)=>{

@@ -193,6 +193,7 @@ router.post('/signupCustomer',async (request,response) => {
 router.post('/feedback',(req,res) => {
     const customer_id = req.body.c_id;
     const professional_id = req.body.p_id;
+    console.log("professional id " + professional_id);
     const rating = req.body.rating;
     const review = req.body.review;
     const feedback = new feedbackTemplatecopy({

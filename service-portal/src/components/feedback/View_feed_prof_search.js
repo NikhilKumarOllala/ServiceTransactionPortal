@@ -52,7 +52,6 @@ class View_feed_prof extends Component{
         avgRating = sessionStorage.getItem('avgRating');
         count = sessionStorage.getItem("count");
         avgRating = avgRating/count;
-        avgRating = Math.round(avgRating * 10)/10;
         //console.log("average rating" + avgRating);
         //console.log("ifFromProp " + idFromProps + " pops " + this.props.professionalID)
         
@@ -65,9 +64,11 @@ class View_feed_prof extends Component{
                 
                 
                 <div className="side_main_box">
-                   
+                    <h3>id from props : {this.props.professionalID}</h3>   
+                    <h3>id from state : {this.state.p_id}</h3>      
+                               
                     
-                    <h3>Feedbacks received: {avgRating}</h3>
+                    <h3>Feedbacks received: </h3>
                     {this.show_cards()}
                 </div>
             </div>

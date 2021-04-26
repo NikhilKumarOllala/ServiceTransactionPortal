@@ -67,7 +67,11 @@ export class ListItemsCusHistory extends Component {
   }
 
 
- 
+ feedbackRedirect(pID){
+   sessionStorage.setItem('giveFeedback',pID)
+   console.log("pid in feedback redirect " + pID);
+   window.location.replace('/feedback')
+ }
 
 
   render() {
@@ -91,7 +95,7 @@ export class ListItemsCusHistory extends Component {
       <br></br>
       <h3>City : {item.location}   Profession : {item.profession}</h3>
     <p>Description : {item.body}</p>
-    <button onClick={() => window.location.replace('/feedback')}>Feedback</button>
+    <button onClick={() => this.feedbackRedirect(item.p_id)}>Feedback</button>
    <p><b>Job Completed</b></p>
    
        
